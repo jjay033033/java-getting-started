@@ -64,14 +64,6 @@ public class Main {
 	@ResponseBody
 	String ssUpdate() throws IOException {
 		System.err.println("Hello, logs!");
-		Logger a = Logger.getLogger(Main.class);
-		org.apache.log4j.Logger b = org.apache.log4j.Logger.getLogger(Main.class);
-		org.slf4j.Logger c = org.slf4j.LoggerFactory.getLogger(Main.class);
-		java.util.logging.Logger d = java.util.logging.Logger.getLogger("dd");
-		a.error("a11111111111111");
-		b.error("b11111111111111");
-		c.error("c11111111111111");
-		d.log(d.getLevel(), "d11111111111111");
 		return ShadowsUpdate.getss();
 		// String url =
 		// Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/",
