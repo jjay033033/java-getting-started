@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-package com.example;
+package top.lmoon;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
+import top.lmoon.shadowsupdate.ShadowsUpdate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +32,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.sql.DataSource;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,8 +65,15 @@ public class Main {
   
   @RequestMapping("/ss")
   @ResponseBody
-  String ssUpdate() {
-    return "abc";
+  String ssUpdate() throws IOException {
+    return ShadowsUpdate.getss();
+//	  String url = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "");
+//	  File f1 = new File(url+"templates/db.html");
+//	  File f2 = new File("shadowsocks/config.xml");
+//	  File f3 = new File("d:/bb.xls");
+//	  String a = f2.getPath();
+//	  String b = f1.getPath();
+//	  return f1.exists()+"_"+f2.exists()+"_"+f3.exists()+"_"+a+"_"+b+"_"+f3.getPath()+"_"+url;
   }
 
   @RequestMapping("/db")
