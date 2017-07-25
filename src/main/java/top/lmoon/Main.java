@@ -16,33 +16,30 @@
 
 package top.lmoon;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
-import top.lmoon.shadowsupdate.ShadowsUpdate;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.sql.DataSource;
-
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+import top.lmoon.shadowsupdate.ShadowsUpdate;
 
 @Controller
 @SpringBootApplication
@@ -67,11 +64,14 @@ public class Main {
 	@ResponseBody
 	String ssUpdate() throws IOException {
 		System.err.println("Hello, logs!");
-		try{
-			throw new Exception("what is lmoon?");
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Logger a = Logger.getLogger(Main.class);
+		org.apache.log4j.Logger b = org.apache.log4j.Logger.getLogger(Main.class);
+		org.slf4j.Logger c = org.slf4j.LoggerFactory.getLogger(Main.class);
+		java.util.logging.Logger d = java.util.logging.Logger.getLogger("dd");
+		a.error("a11111111111111");
+		b.error("b11111111111111");
+		c.error("c11111111111111");
+		d.log(d.getLevel(), "d11111111111111");
 		return ShadowsUpdate.getss();
 		// String url =
 		// Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/",
