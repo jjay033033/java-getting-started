@@ -67,6 +67,11 @@ public class Main {
 	@ResponseBody
 	String ssUpdate() throws IOException {
 		System.err.println("Hello, logs!");
+		try{
+			throw new Exception("what is lmoon?");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return ShadowsUpdate.getss();
 		// String url =
 		// Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/",
