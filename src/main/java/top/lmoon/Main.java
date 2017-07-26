@@ -68,7 +68,7 @@ public class Main {
 	@RequestMapping("/ss")
 	String ssUpdate(Map<String, Object> map) {
 		System.err.println("Hello, logs!");
-		map.put("ssurl", ShadowsUpdate.getss());
+		map.put("list", ShadowsUpdate.getss());
 		return "ss";
 		// String url =
 		// Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/",

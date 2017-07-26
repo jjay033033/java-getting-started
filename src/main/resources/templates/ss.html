@@ -7,10 +7,14 @@
 
 </head>
 <body>
-	<div th:if="${ssurl}==''">Hello LMoon!Failed to get ss account.....</div>
-	<a id="abc" th:if="${ssurl}!=''" th:href="${ssurl}">Hello LMoon!</a>
+	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
+	<div th:if="${not #lists.isEmpty(list)}">
+		<div th:each="entry:${list}">
+			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}">Hello LMoon!</a>
+		</div>
+	</div>
 	<script language="javascript" type="text/javascript"> 
-	var abc = document.getElementById('abc');
+	var abc = document.getElementById('ids');
 	if(abc){
 		abc.click();
 	}

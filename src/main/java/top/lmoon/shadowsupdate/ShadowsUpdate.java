@@ -4,6 +4,7 @@
 package top.lmoon.shadowsupdate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -44,18 +45,36 @@ public class ShadowsUpdate {
 
 	private static final String SLEEP_TIME = "sleepTime";
 
-	public static String getss() {
-
+	public static List<Map<String,Object>> getss() {		
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
 		try {	
 			List<ConfVO> newList = getConfListFromServer();
 			if(newList==null||newList.isEmpty()){
-				return "";
+				return list;
 			}
 //			ConfVO vo = newList.get(0);
-			for(ConfVO vo:newList){
-				if(vo.getServer().contains("jp")){
-					return "ss://"+Base64Coder.encodeBase64(QRcodeUtil.getConfStrFromVO(vo));
-				}
+			boolean hasFirst = false;
+			for(int i=0;i<newList.size();i++){
+//				if(vo.getServer().contains("jp")){
+				ConfVO vo = newList.get(i);
+				try{
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("url", "ss://"+Base64Coder.encodeBase64(QRcodeUtil.getConfStrFromVO(vo)));
+					
+					map.put("server", vo.getServer());
+					if(!hasFirst&&vo.getServer().contains("jp")){
+						map.put("id", "ids");
+						hasFirst = true;
+					}else{
+						map.put("id", "ids"+i);
+					}
+					list.add(map);
+				}catch (Exception e1) {
+					e1.printStackTrace();
+					logger.error("", e1);
+				}				
+//				}
 			}
 			
 //			List<ConfVO> oldList = getConfListFromJson(FileUtil.readFile(PATH_NAME));
@@ -71,7 +90,7 @@ public class ShadowsUpdate {
 			logger.error("", e);
 			
 		}
-		return "";
+		return list;
 	}
 
 	private static List<ConfVO> getConfListFromServer() {
