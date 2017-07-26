@@ -48,6 +48,9 @@ public class ShadowsUpdate {
 
 		try {	
 			List<ConfVO> newList = getConfListFromServer();
+			if(newList==null||newList.isEmpty()){
+				return "";
+			}
 			ConfVO vo = newList.get(0);
 			return "ss://"+Base64Coder.encodeBase64(QRcodeUtil.getConfStrFromVO(vo));
 //			List<ConfVO> oldList = getConfListFromJson(FileUtil.readFile(PATH_NAME));

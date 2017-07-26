@@ -26,7 +26,6 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -60,11 +59,17 @@ public class Main {
 		return "index";
 	}
 
-	@RequestMapping("/ss")
+	@RequestMapping("/test")
 	@ResponseBody
-	String ssUpdate() throws IOException {
+	String home() {
+		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
+	}
+
+	@RequestMapping("/ss")
+	String ssUpdate(Map<String, Object> map) {
 		System.err.println("Hello, logs!");
-		return ShadowsUpdate.getss();
+		map.put("ssurl", ShadowsUpdate.getss());
+		return "ss";
 		// String url =
 		// Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/",
 		// "");

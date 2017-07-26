@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Hello LMoon!</title>
+
+</head>
+<body>
+	<div th:if="${ssurl}==''">Hello LMoon!Failed to get ss account.....</div>
+	<a id="abc" th:if="${ssurl}!=''" th:href="${ssurl}">Hello LMoon!</a>
+	<script language="javascript" type="text/javascript"> 
+	var abc = document.getElementById('abc');
+	if(abc){
+		abc.click();
+	}
+		
+	</script>
+</body>
+</html>
