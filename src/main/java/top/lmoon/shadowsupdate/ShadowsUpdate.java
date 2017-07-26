@@ -51,8 +51,13 @@ public class ShadowsUpdate {
 			if(newList==null||newList.isEmpty()){
 				return "";
 			}
-			ConfVO vo = newList.get(0);
-			return "ss://"+Base64Coder.encodeBase64(QRcodeUtil.getConfStrFromVO(vo));
+//			ConfVO vo = newList.get(0);
+			for(ConfVO vo:newList){
+				if(vo.getServer().contains("jp")){
+					return "ss://"+Base64Coder.encodeBase64(QRcodeUtil.getConfStrFromVO(vo));
+				}
+			}
+			
 //			List<ConfVO> oldList = getConfListFromJson(FileUtil.readFile(PATH_NAME));
 //			Map<String, Object> compareMap = ConfListUtil.CompareList(oldList, newList);
 
@@ -64,9 +69,9 @@ public class ShadowsUpdate {
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("", e);
-			return "";
+			
 		}
-
+		return "";
 	}
 
 	private static List<ConfVO> getConfListFromServer() {
