@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
-import top.lmoon.shadowsupdate.qrcode.QRcoder;
+import top.lmoon.shadowsupdate.qrcode.SwetakeQRcoder;
 import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.shadowsupdate.vo.ConfVO;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
@@ -64,7 +64,7 @@ public class PicConfigListImpl implements ConfigList{
 				
 				String serverStr = content.substring(serverIdx, serverEnd);
 				if(serverStr.contains(vo.getSeverPicFlag())){
-					ConfVO vo = getConfFromStr(Base64Coder.decodeBase64ForSS(QRcoder.decode(getImgUrl(serverStr.trim()))));
+					ConfVO vo = getConfFromStr(Base64Coder.decodeBase64ForSS(SwetakeQRcoder.decode(getImgUrl(serverStr.trim()))));
 					if(vo!=null){
 						list.add(vo);
 					}

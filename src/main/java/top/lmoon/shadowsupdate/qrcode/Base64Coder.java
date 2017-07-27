@@ -48,7 +48,7 @@ public class Base64Coder {
  
     
     public static void createQRCodePic4Base64(String input,String filepath) throws Exception{
-    	QRcoder qRcoder = new QRcoder();
+    	SwetakeQRcoder qRcoder = new SwetakeQRcoder();
     	qRcoder.encoderQRCoder("ss://"+encodeBase64(input), filepath);
     }
     
