@@ -16,6 +16,7 @@
 
 package top.lmoon;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,14 +58,35 @@ public class Main {
 	String index() {
 		return "index";
 	}
+	
+	private File getFile(String str){
+		return new File(str+"shadowsocks/config.xml");
+	}
 
 	@RequestMapping("/test")
 	@ResponseBody
 	String test() {
 		String result = "";
-//		result = Thread.currentThread().getContextClassLoader().getResource("").toString();
-		result = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("jar:", "").replace("!", "")+"shadowsocks/config.xml";
-		return result;
+		String a = Thread.currentThread().getContextClassLoader().getResource("").toString();
+		String b = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("jar:", "").replace("!", "");
+		String c = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("jar:", "");
+		String d = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("!", "");
+		String e = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("jar:", "").replace("!", "");
+		String f = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("!", "");
+		String g = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "");
+		String h = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("jar:", "");
+		File fa = getFile(a);
+		File fb = getFile(b);
+		File fc = getFile(c);
+		File fd = getFile(d);
+		File fe = getFile(e);
+		File ff = getFile(f);
+		File fg = getFile(g);
+		File fh = getFile(h);
+		return a+"_"+fa.exists()+b+"_"+fb.exists()
+		+c+"_"+fc.exists()+d+"_"+fd.exists()
+		+e+"_"+fe.exists()+f+"_"+ff.exists()
+		+g+"_"+fg.exists()+h+"_"+fh.exists();
 //		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
 	}
 
