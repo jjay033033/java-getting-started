@@ -31,7 +31,7 @@ public class XmlConfig {
 	
 	private void init(){
 		try {
-			XmlMap xm = new XmlMap(Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "")+path);
+			XmlMap xm = new XmlMap(Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("jar:", "").replace("!", "")+path);
 			map = xm.getConfigMap();
 			if (map == null || map.isEmpty()) {
 				throw new FileNotFoundException();
