@@ -9,5 +9,9 @@ package top.lmoon.shadowsupdate.qrcode;
  * 
  */
 public interface QRcoder {
+	
+	void encode(String content,String filepath);
+	
+	String decode(String urlStr);
 
 }

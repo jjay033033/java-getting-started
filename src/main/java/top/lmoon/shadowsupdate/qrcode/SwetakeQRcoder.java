@@ -17,15 +17,15 @@ import com.swetake.util.Qrcode;
 import jp.sourceforge.qrcode.QRCodeDecoder;
 import jp.sourceforge.qrcode.data.QRCodeImage;
 
-public class SwetakeQRcoder {
+public class SwetakeQRcoder implements QRcoder{
 	
 	private static final Logger logger = Logger.getLogger(SwetakeQRcoder.class);
 	
-	public void encoderQRCoder(final String content,String filepath) throws Exception{
-		encoderQRCoder(content, 10,filepath);
+	public void encode(String content,String filepath){
+		encode(content, 10,filepath);
 	}
 
-	public void encoderQRCoder(final String content, final Integer size,String filepath) throws Exception {
+	public void encode(final String content, final Integer size,String filepath){
 
 		FileOutputStream fos = null;
 		try {
@@ -72,7 +72,8 @@ public class SwetakeQRcoder {
 			// 生成二维码QRCode图片
 			ImageIO.write(bufImg, "jpg", fos);
 		} catch (Exception e) {
-			throw new Exception(e);
+			e.printStackTrace();
+			logger.error("",e);
 		}finally{
 			if(fos!=null){
 				try {
@@ -85,7 +86,7 @@ public class SwetakeQRcoder {
 		}
 	}
 	
-	public static String decode(String urlStr) {
+	public String decode(String urlStr) {
 		BufferedImage bi = null;
 		QRCodeDecoder decoder = new QRCodeDecoder();  
 		try {
@@ -139,6 +140,6 @@ public class SwetakeQRcoder {
 	
 	public static void main(String[] args) throws Exception {
 //		new QRcoder().encoderQRCoder("abcdefg", 10,"d:/abc.jpg");
-		System.out.println(decode("http://www.shadowsocks8.net/images/server01.png"));
+		System.out.println(new SwetakeQRcoder().decode("http://www.shadowsocks8.net/images/server01.png"));
 	}
 }

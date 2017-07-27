@@ -10,7 +10,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
+import top.lmoon.shadowsupdate.qrcode.QRcoder;
 import top.lmoon.shadowsupdate.qrcode.SwetakeQRcoder;
+import top.lmoon.shadowsupdate.qrcode.ZxingQRcoder;
 import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.shadowsupdate.vo.ConfVO;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
@@ -52,6 +54,7 @@ public class PicConfigListImpl implements ConfigList{
 			return list;
 		}
 		try{
+			QRcoder qr = new ZxingQRcoder();
 			while(content.length()>0) {
 				int findIdx = content.indexOf(vo.getPicUrlBegin());
 				
@@ -64,7 +67,14 @@ public class PicConfigListImpl implements ConfigList{
 				
 				String serverStr = content.substring(serverIdx, serverEnd);
 				if(serverStr.contains(vo.getSeverPicFlag())){
-					ConfVO vo = getConfFromStr(Base64Coder.decodeBase64ForSS(SwetakeQRcoder.decode(getImgUrl(serverStr.trim()))));
+					ConfVO vo = null;
+					try {
+						vo = getConfFromStr(Base64Coder.decodeBase64ForSS(qr.decode(getImgUrl(serverStr.trim()))));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						logger.error("",e);
+					}
 					if(vo!=null){
 						list.add(vo);
 					}
