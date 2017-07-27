@@ -62,7 +62,8 @@ public class Main {
 	@ResponseBody
 	String test() {
 		String result = "";
-		result = Thread.currentThread().getContextClassLoader().getResource("").toString();
+//		result = Thread.currentThread().getContextClassLoader().getResource("").toString();
+		result = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("jar:", "").replace("!", "")+"shadowsocks/config.xml";
 		return result;
 //		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
 	}
