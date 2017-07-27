@@ -60,8 +60,11 @@ public class Main {
 
 	@RequestMapping("/test")
 	@ResponseBody
-	String home() {
-		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
+	String test() {
+		String result = "";
+		result = Thread.currentThread().getContextClassLoader().getResource("").toString();
+		return result;
+//		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
 	}
 
 	@RequestMapping("/ss")
