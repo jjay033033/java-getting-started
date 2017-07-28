@@ -63,30 +63,11 @@ public class Main {
 		return new File(str+"shadowsocks/config.xml");
 	}
 
-	@RequestMapping("/test")
-	@ResponseBody
-	String test() {
-		String result = "";
-		String a = Thread.currentThread().getContextClassLoader().getResource("").toString();
-		String b = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("jar:", "").replace("!", "");
-		String c = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("jar:", "");
-		String d = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("!", "");
-		String e = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("jar:", "").replace("!", "");
-		String f = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("!", "");
-		String g = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "");
-		String h = Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/", "").replace("jar:", "");
-		File fa = getFile(a);
-		File fb = getFile(b);
-		File fc = getFile(c);
-		File fd = getFile(d);
-		File fe = getFile(e);
-		File ff = getFile(f);
-		File fg = getFile(g);
-		File fh = getFile(h);
-		return a+"_"+fa.exists()+b+"_"+fb.exists()
-		+c+"_"+fc.exists()+d+"_"+fd.exists()
-		+e+"_"+fe.exists()+f+"_"+ff.exists()
-		+g+"_"+fg.exists()+h+"_"+fh.exists();
+	@RequestMapping("/conf")
+	String test(Map<String, Object> map) {
+		System.err.println("Hello, test!");
+		map.put("list", "");
+		return "conf";
 //		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
 	}
 
@@ -124,6 +105,27 @@ public class Main {
 			return "db";
 		} catch (Exception e) {
 			model.put("message", e.getMessage());
+			return "error";
+		}
+	}
+	
+	@RequestMapping("/selectConf")
+	String selectConf(Map<String, Object> map) {
+		try (Connection connection = dataSource.getConnection()) {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
+//			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+			ResultSet rs = stmt.executeQuery("SELECT conf FROM confs where id=1");
+
+			String conf = "";
+			if (rs.next()) {
+				conf = rs.getString("conf");
+			}
+
+			map.put("conf", conf);
+			return "db";
+		} catch (Exception e) {
+			map.put("message", e.getMessage());
 			return "error";
 		}
 	}
