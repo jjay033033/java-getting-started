@@ -33,6 +33,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,6 +41,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import top.lmoon.shadowsupdate.ShadowsUpdate;
+import top.lmoon.shadowsupdate.vo.ConfWebVO;
 
 @Controller
 @SpringBootApplication
@@ -131,18 +133,17 @@ public class Main {
 	}
 	
 	@RequestMapping(value="/updateConf", method=RequestMethod.POST)
-	String updateConf(Map<String, Object> map) {
+	String updateConf(@ModelAttribute(value="vo") ConfWebVO vo) {
 		try (Connection connection = dataSource.getConnection()) {
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
 			PreparedStatement ps = connection.prepareStatement("insert into conf(id,conf) values (?,?)");
 			ps.setInt(1, 1);
-			ps.setString(2, map.get("conf").toString());
+			ps.setString(2, vo.getConf());
 			int result = ps.executeUpdate();
-			map.put("result", result);
 			return "conf";
 		} catch (Exception e) {
-			map.put("message", e.getMessage());
+//			map.put("message", e.getMessage());
 			return "error";
 		}
 	}

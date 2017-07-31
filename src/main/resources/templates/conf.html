@@ -7,8 +7,8 @@
 
 </head>
 <body>
-	<form action="#" th:action="@{/updateConf}" method="post">
-		<input type="text" th:field="${conf}" /> 
+	<form action="#" th:action="@{/updateConf}" th:object="${vo}" method="post">
+		<input type="text" th:field="*{conf}" /> 
 		<input type="submit" />
 	</form>
 </body>
