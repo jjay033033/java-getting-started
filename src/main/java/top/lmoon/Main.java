@@ -18,6 +18,7 @@ package top.lmoon;
 
 import java.io.File;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,7 +34,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -113,8 +114,7 @@ public class Main {
 	String selectConf(Map<String, Object> map) {
 		try (Connection connection = dataSource.getConnection()) {
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
-//			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+//			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
 			ResultSet rs = stmt.executeQuery("SELECT conf FROM confs where id=1");
 
 			String conf = "";
@@ -123,7 +123,24 @@ public class Main {
 			}
 
 			map.put("conf", conf);
-			return "db";
+			return "conf";
+		} catch (Exception e) {
+			map.put("message", e.getMessage());
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value="/updateConf", method=RequestMethod.POST)
+	String updateConf(Map<String, Object> map) {
+		try (Connection connection = dataSource.getConnection()) {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
+			PreparedStatement ps = connection.prepareStatement("insert into conf(id,conf) values (?,?)");
+			ps.setInt(1, 1);
+			ps.setString(2, map.get("conf").toString());
+			int result = ps.executeUpdate();
+			map.put("result", result);
+			return "conf";
 		} catch (Exception e) {
 			map.put("message", e.getMessage());
 			return "error";

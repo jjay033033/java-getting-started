@@ -15,7 +15,6 @@ import org.apache.log4j.Logger;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import top.lmoon.Main;
 import top.lmoon.shadowsupdate.config.ConfigList;
 import top.lmoon.shadowsupdate.config.ConfigListFactory;
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
@@ -34,7 +33,7 @@ public class ShadowsUpdate {
 	// "/res/log4j.properties");
 	// }
 
-	private static final Logger logger = Logger.getLogger(Main.class);
+	private static final Logger logger = Logger.getLogger(ShadowsUpdate.class);
 
 	private static final String HOME_PATH = "res/";
 
