@@ -114,7 +114,7 @@ public class Main {
 	String selectConf(Map<String, Object> map) {
 		try (Connection connection = dataSource.getConnection()) {
 			Statement stmt = connection.createStatement();
-//			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
 			ResultSet rs = stmt.executeQuery("SELECT conf FROM confs where id=1");
 
 			String conf = "";
