@@ -113,7 +113,7 @@ public class Main {
 	}
 	
 	@RequestMapping("/selectConf")
-	String selectConf(ConfWebVO vo) {
+	String selectConf(@ModelAttribute(value="vo") ConfWebVO vo) {
 		try (Connection connection = dataSource.getConnection()) {
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
