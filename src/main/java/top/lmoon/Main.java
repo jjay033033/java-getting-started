@@ -113,7 +113,7 @@ public class Main {
 	}
 	
 	@RequestMapping("/selectConf")
-	String selectConf(Map<String, Object> map) {
+	String selectConf(ConfWebVO vo) {
 		try (Connection connection = dataSource.getConnection()) {
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
@@ -124,10 +124,10 @@ public class Main {
 				conf = rs.getString("conf");
 			}
 
-			map.put("conf", conf);
+			vo.setConf(conf);
 			return "conf";
 		} catch (Exception e) {
-			map.put("message", e.getMessage());
+//			map.put("message", e.getMessage());
 			return "error";
 		}
 	}
