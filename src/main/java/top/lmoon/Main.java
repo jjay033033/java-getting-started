@@ -137,10 +137,11 @@ public class Main {
 		try (Connection connection = dataSource.getConnection()) {
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
-			PreparedStatement ps = connection.prepareStatement("insert into conf(id,conf) values (?,?)");
-			ps.setInt(1, 1);
-			ps.setString(2, vo.getConf());
-			int result = ps.executeUpdate();
+			stmt.executeUpdate("insert into conf(id,conf) values (1,'"+vo.getConf()+"')");
+//			PreparedStatement ps = connection.prepareStatement("insert into conf(id,conf) values (?,?)");
+//			ps.setInt(1, 1);
+//			ps.setString(2, vo.getConf());
+//			int result = ps.executeUpdate();
 			return "conf";
 		} catch (Exception e) {
 //			map.put("message", e.getMessage());
