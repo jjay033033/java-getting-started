@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="#" th:action="@{/updateConf}" th:object="${vo}" method="post">
-		<input type="text" th:field="*{conf}" /> 
+		<textarea cols="30" rows="50" th:field="*{conf}" ></textarea>
 		<input type="submit" />
 	</form>
 </body>
