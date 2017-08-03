@@ -67,6 +67,15 @@ public class Main {
 		return HtmlUtils.htmlUnescape(confsDAO.selectConf());
 //		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
 	}
+	
+	@RequestMapping("/test2")
+	@ResponseBody
+	String test2(Map<String, Object> map) {
+		System.err.println("Hello, test!");
+//		map.put("list", "");
+		return confsDAO.selectConf();
+//		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
+	}
 
 	@RequestMapping("/ss")
 	String ssUpdate(Map<String, Object> map) {
