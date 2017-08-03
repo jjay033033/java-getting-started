@@ -128,6 +128,7 @@ public class Main {
 			return "conf";
 		} catch (Exception e) {
 //			map.put("message", e.getMessage());
+			vo.setMessage(e.getMessage());
 			return "error";
 		}
 	}
@@ -145,6 +146,7 @@ public class Main {
 			return "conf";
 		} catch (Exception e) {
 //			map.put("message", e.getMessage());
+			vo.setMessage(e.getMessage());
 			return "error";
 		}
 	}

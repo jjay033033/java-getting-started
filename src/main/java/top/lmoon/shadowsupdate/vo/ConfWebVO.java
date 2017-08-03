@@ -13,6 +13,8 @@ public class ConfWebVO {
 	private int id;
 	
 	private String conf;
+	
+	private String message;
 
 	public int getId() {
 		return id;
@@ -28,6 +30,14 @@ public class ConfWebVO {
 
 	public void setConf(String conf) {
 		this.conf = conf;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 	
