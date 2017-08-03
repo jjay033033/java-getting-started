@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import top.lmoon.heroku.dao.BaseDAO;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
 
@@ -52,6 +53,9 @@ public class Main {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private BaseDAO baseDAO;
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Main.class, args);
@@ -114,20 +118,10 @@ public class Main {
 	
 	@RequestMapping("/selectConf")
 	String selectConf(@ModelAttribute(value="vo") ConfWebVO vo) {
-		try (Connection connection = dataSource.getConnection()) {
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
-			ResultSet rs = stmt.executeQuery("SELECT conf FROM confs where id=1");
-
-			String conf = "";
-			if (rs.next()) {
-				conf = rs.getString("conf");
-			}
-
-			vo.setConf(conf);
+		try {
+			vo.setConf(baseDAO.selectConf());
 			return "conf";
 		} catch (Exception e) {
-//			map.put("message", e.getMessage());
 			vo.setMessage(e.getMessage());
 			return "error";
 		}
