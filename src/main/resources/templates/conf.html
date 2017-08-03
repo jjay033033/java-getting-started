@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form id="cform" action="#" th:action="@{/updateConf}" th:object="${vo}" method="post">
-		<!-- <textarea cols="30" rows="30" th:field="*{conf}" ></textarea> -->
-		<input type="text" th:field="*{conf}"/>
+		<textarea cols="30" rows="30" th:field="*{conf}" ></textarea>
+		<!-- <input type="text" th:field="*{conf}"/> -->
 		<input type="submit" />
 	</form>
 </body>

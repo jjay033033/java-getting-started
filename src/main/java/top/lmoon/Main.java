@@ -138,7 +138,8 @@ public class Main {
 		try (Connection connection = dataSource.getConnection()) {
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
-			stmt.executeUpdate("insert into confs(id,conf) values (1,'"+vo.getConf()+"')");
+//			stmt.executeUpdate("insert into confs(id,conf) values (1,'"+vo.getConf()+"')");
+			stmt.executeUpdate("update confs set conf='"+vo.getConf()+"' where id=1");
 //			PreparedStatement ps = connection.prepareStatement("insert into conf(id,conf) values (?,?)");
 //			ps.setInt(1, 1);
 //			ps.setString(2, vo.getConf());
