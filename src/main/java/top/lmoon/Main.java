@@ -30,6 +30,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.HtmlUtils;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -57,11 +59,12 @@ public class Main {
 		return "index";
 	}
 
-	@RequestMapping("/conf")
+	@RequestMapping("/test")
+	@ResponseBody
 	String test(Map<String, Object> map) {
 		System.err.println("Hello, test!");
-		map.put("list", "");
-		return "conf";
+//		map.put("list", "");
+		return HtmlUtils.htmlUnescape(confsDAO.selectConf());
 //		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
 	}
 
