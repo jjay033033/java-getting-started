@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import top.lmoon.heroku.dao.BaseDAO;
+import top.lmoon.heroku.dao.ConfsDAO;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
 
@@ -55,7 +55,7 @@ public class Main {
 	private DataSource dataSource;
 	
 	@Autowired
-	private BaseDAO baseDAO;
+	private ConfsDAO confsDAO;
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Main.class, args);
@@ -119,7 +119,7 @@ public class Main {
 	@RequestMapping("/selectConf")
 	String selectConf(@ModelAttribute(value="vo") ConfWebVO vo) {
 		try {
-			vo.setConf(baseDAO.selectConf());
+			vo.setConf(confsDAO.selectConf());
 			return "conf";
 		} catch (Exception e) {
 			vo.setMessage(e.getMessage());
@@ -129,15 +129,8 @@ public class Main {
 	
 	@RequestMapping(value="/updateConf", method=RequestMethod.POST)
 	String updateConf(@ModelAttribute(value="vo") ConfWebVO vo) {
-		try (Connection connection = dataSource.getConnection()) {
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
-//			stmt.executeUpdate("insert into confs(id,conf) values (1,'"+vo.getConf()+"')");
-			stmt.executeUpdate("update confs set conf='"+vo.getConf()+"' where id=1");
-//			PreparedStatement ps = connection.prepareStatement("insert into conf(id,conf) values (?,?)");
-//			ps.setInt(1, 1);
-//			ps.setString(2, vo.getConf());
-//			int result = ps.executeUpdate();
+		try{
+			confsDAO.updateConf(vo);
 			return "conf";
 		} catch (Exception e) {
 //			map.put("message", e.getMessage());
