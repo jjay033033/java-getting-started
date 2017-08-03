@@ -16,13 +16,7 @@
 
 package top.lmoon;
 
-import java.io.File;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -50,9 +44,6 @@ public class Main {
 
 	@Value("${spring.datasource.url}")
 	private String dbUrl;
-
-	@Autowired
-	private DataSource dataSource;
 	
 	@Autowired
 	private ConfsDAO confsDAO;
@@ -64,10 +55,6 @@ public class Main {
 	@RequestMapping("/")
 	String index() {
 		return "index";
-	}
-	
-	private File getFile(String str){
-		return new File(str+"shadowsocks/config.xml");
 	}
 
 	@RequestMapping("/conf")
@@ -95,26 +82,26 @@ public class Main {
 		// f1.exists()+"_"+f2.exists()+"_"+f3.exists()+"_"+a+"_"+b+"_"+f3.getPath()+"_"+url;
 	}
 
-	@RequestMapping("/db")
-	String db(Map<String, Object> model) {
-		try (Connection connection = dataSource.getConnection()) {
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-			ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-
-			ArrayList<String> output = new ArrayList<String>();
-			while (rs.next()) {
-				output.add("Read from DB: " + rs.getTimestamp("tick"));
-			}
-
-			model.put("records", output);
-			return "db";
-		} catch (Exception e) {
-			model.put("message", e.getMessage());
-			return "error";
-		}
-	}
+//	@RequestMapping("/db")
+//	String db(Map<String, Object> model) {
+//		try (Connection connection = dataSource.getConnection()) {
+//			Statement stmt = connection.createStatement();
+//			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
+//			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+//			ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+//
+//			ArrayList<String> output = new ArrayList<String>();
+//			while (rs.next()) {
+//				output.add("Read from DB: " + rs.getTimestamp("tick"));
+//			}
+//
+//			model.put("records", output);
+//			return "db";
+//		} catch (Exception e) {
+//			model.put("message", e.getMessage());
+//			return "error";
+//		}
+//	}
 	
 	@RequestMapping("/selectConf")
 	String selectConf(@ModelAttribute(value="vo") ConfWebVO vo) {
