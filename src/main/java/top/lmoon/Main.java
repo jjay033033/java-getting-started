@@ -94,19 +94,28 @@ public class Main {
 	@RequestMapping("/vipAdd")
 	@ResponseBody
 	String vipAdd(Map<String, Object> map) {
-		System.err.println("vipAdd!");
-//		map.put("list", "");
-		int result = vipVideoDAO.insert(MapUtils.getString(map, "ip", ""));
-		return "Is Ok!:"+result;
+		try {
+			System.err.println("vipAdd!");
+			int result = vipVideoDAO.insert(MapUtils.getString(map, "ip", ""));
+			return "Is Ok!:"+result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
 	}
 	
 	@RequestMapping("/vipGet")
 	String vipGet(Map<String, Object> map) {
-		System.err.println("vipAdd!");
-//		map.put("list", "");
-		List<VipVideoVO> list = vipVideoDAO.select();
-		map.put("list", list);
-		return "vipvideo";
+		try {
+			System.err.println("vipGet!");
+			List<VipVideoVO> list = vipVideoDAO.select();
+			map.put("list", list);
+			return "vipvideo";
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("message", e.getMessage());
+			return "error";
+		}
 	}
 
 	
