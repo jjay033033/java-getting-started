@@ -54,8 +54,8 @@ public class VipVideoDAO {
 	public int insert(String remark) {
 		try {
 			Connection connection = dataSource.getConnection();
-			JdbcTemplate.executeUpdate(connection,
-					"CREATE TABLE IF NOT EXISTS vipvideo (remark varchar(32),ctime timestamp)", new Object[0]);
+//			JdbcTemplate.executeUpdate(connection,
+//					"CREATE TABLE IF NOT EXISTS vipvideo (remark varchar(32),ctime timestamp)", new Object[0]);
 			String sql = "insert into vipvideo(remark,ctime) values (?,now())";
 			return JdbcTemplate.executeUpdate(connection, sql, new Object[] { remark });
 		} catch (Exception e) {
