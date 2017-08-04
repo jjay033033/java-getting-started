@@ -14,7 +14,6 @@ import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.util.XmlMap;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
 
-@Component
 public class XmlConfig {
 	
 	private static final Logger logger = Logger.getLogger(XmlConfig.class);
