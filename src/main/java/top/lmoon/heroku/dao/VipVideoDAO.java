@@ -35,7 +35,7 @@ public class VipVideoDAO {
 
 	public List<VipVideoVO> select() {
 		try (Connection connection = dataSource.getConnection()) {
-			String sql = "SELECT * FROM vipvideo";
+			String sql = "SELECT * FROM vipvideo order by ctime desc";
 			return JdbcTemplate.queryForList(connection, sql, new RowMapper<VipVideoVO>() {
 
 				@Override
