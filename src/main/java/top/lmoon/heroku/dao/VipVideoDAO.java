@@ -6,6 +6,7 @@ package top.lmoon.heroku.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -40,7 +41,8 @@ public class VipVideoDAO {
 				@Override
 				public VipVideoVO mapRow(ResultSet rs, int rowIndex) throws SQLException {
 					VipVideoVO vo = new VipVideoVO();
-					vo.setCtime(rs.getTimestamp("ctime"));
+					Timestamp ctime = rs.getTimestamp("ctime");
+					vo.setCtime(new Timestamp(ctime.getTime()+8L*60*60*1000));
 					vo.setRemark(rs.getString("remark"));
 					return vo;
 				}
