@@ -66,5 +66,29 @@ public class VipVideoDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public int dropTable(){
+		try {
+			Connection connection = dataSource.getConnection();
+			String sql = "drop table vipvideo";
+			return JdbcTemplate.executeUpdate(connection, sql, new Object[0]);
+		} catch (Exception e) {
+			System.err.println(e);
+			logger.error("", e);
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public int createTable(){
+		try {
+			Connection connection = dataSource.getConnection();
+			String sql = "CREATE TABLE IF NOT EXISTS vipvideo (remark varchar(64),ctime timestamp)";
+			return JdbcTemplate.executeUpdate(connection, sql, new Object[0]);
+		} catch (Exception e) {
+			System.err.println(e);
+			logger.error("", e);
+			throw new RuntimeException(e);
+		}
+	}
 
 }
