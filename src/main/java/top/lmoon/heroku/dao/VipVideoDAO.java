@@ -59,6 +59,7 @@ public class VipVideoDAO {
 			String sql = "insert into vipvideo(remark,ctime) values (?,now())";
 			return JdbcTemplate.executeUpdate(connection, sql, new Object[] { remark });
 		} catch (Exception e) {
+			System.err.println(e);
 			logger.error("", e);
 			throw new RuntimeException(e);
 		}
