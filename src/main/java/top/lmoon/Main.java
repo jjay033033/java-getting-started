@@ -77,11 +77,10 @@ public class Main {
 	
 	@RequestMapping("/test2")
 	@ResponseBody
-	String test2(Map<String, Object> map) {
-		System.err.println("Hello, test!");
-//		map.put("list", "");
-		return confsDAO.selectConf();
-//		return "<a href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello world!</a>";
+	String test2(String cookie) {
+		System.err.println("Hello, test2!");
+		
+		return cookie;
 	}
 
 	@RequestMapping("/ss")
