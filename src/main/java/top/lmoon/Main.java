@@ -42,6 +42,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import top.lmoon.heroku.dao.ConfsDAO;
 import top.lmoon.heroku.dao.VipVideoDAO;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
+import top.lmoon.shadowsupdate.qrcode.Base64Coder;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
 import top.lmoon.vipvideo.vo.VipVideoVO;
 
@@ -82,8 +83,11 @@ public class Main {
 		System.err.println("Hello, test2!");
 		
 		try {
-			return URLDecoder.decode(cookie, "utf-8");
-		} catch (UnsupportedEncodingException e) {
+			String a = URLDecoder.decode(new String(Base64Coder.decodeBase64(cookie)), "utf-8");
+			String b = URLDecoder.decode(new String(Base64Coder.decodeBase64(cookie),"utf-8"), "utf-8");
+			String c = new String(Base64Coder.decodeBase64(cookie),"utf-8");
+			return a+"*******"+b+"*******"+c;
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return e.getMessage();
