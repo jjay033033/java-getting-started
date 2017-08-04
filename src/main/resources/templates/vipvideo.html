@@ -7,8 +7,10 @@
 <div class="container">
   <h1>VipVideo visited remark</h1>
   <ul th:each="vo : ${list}">
-    <li th:text="${vo.ctime}"/>
-    <li th:text="${vo.remark}"/>
+    <li>
+    <div th:text="${vo.ctime}"></div>
+    <div th:text="${vo.remark}"></div>
+    </li>
   </ul>
 </div>
 

@@ -93,10 +93,10 @@ public class Main {
 	
 	@RequestMapping("/vipAdd")
 	@ResponseBody
-	String vipAdd(Map<String, Object> map) {
+	String vipAdd(String ip) {
 		try {
 			System.err.println("vipAdd!");
-			int result = vipVideoDAO.insert(MapUtils.getString(map, "ip", ""));
+			int result = vipVideoDAO.insert(ip);
 			return "Is Ok!:"+result;
 		} catch (Exception e) {
 			e.printStackTrace();
