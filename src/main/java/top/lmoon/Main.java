@@ -16,13 +16,14 @@
 
 package top.lmoon;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -80,7 +81,13 @@ public class Main {
 	String test2(String cookie) {
 		System.err.println("Hello, test2!");
 		
-		return cookie;
+		try {
+			return URLDecoder.decode(cookie, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return e.getMessage();
+		}
 	}
 
 	@RequestMapping("/ss")
