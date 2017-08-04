@@ -4,7 +4,7 @@
 
   <body>
     <p th:text="${message}">Exception message</p>
-    <p th:text="${vo.message}">Exception message</p>
+    <p th:if="${vo!=null}" th:text="${vo.message}">Exception message</p>
   </body>
 
 </html>
