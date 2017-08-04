@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.util.XmlMap;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
 
+@Component
 public class XmlConfig {
 	
 	private static final Logger logger = Logger.getLogger(XmlConfig.class);
@@ -107,14 +109,6 @@ public class XmlConfig {
 		}
 		return xmlConfig;
 	}
-	
-//	public ServerConfigVo getServerConfigVo(String id){
-//		ServerConfigVo vo = serverMap.get(id);
-//		if(vo == null){
-//			vo = new ServerConfigVo();
-//		}
-//		return vo;
-//	}
 	
 	/**
 	 * 整个xml文件的map

@@ -24,7 +24,7 @@ import top.lmoon.shadowsupdate.vo.ConfWebVO;
  * @date 2017年8月3日
  * 
  */
-@Component
+@Component("confsDAO")
 public class ConfsDAO {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ConfsDAO.class);

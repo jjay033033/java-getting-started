@@ -3,15 +3,14 @@ package top.lmoon.shadowsupdate.util;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.util.HtmlUtils;
 
 import top.lmoon.heroku.dao.ConfsDAO;
+import top.lmoon.spring.util.SpringContextUtil;
 
 public class XmlMap {
 	
-	@Autowired
-	private ConfsDAO confsDAO;
+	private ConfsDAO confsDAO = (ConfsDAO) SpringContextUtil.getBean("confsDAO");
 
 	private Map map;
 	
