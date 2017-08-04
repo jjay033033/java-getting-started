@@ -43,12 +43,12 @@ public class PicConfigListImpl implements ConfigList{
 	 * @see priv.lmoon.shadowsupdate.config.ConfigList#getConfigList()
 	 */
 	@Override
-	public List<ConfVO> getConfigList() {
+	public List<ConfVO> getConfigList() throws Exception {
 		// TODO Auto-generated method stub
 		return getConf(UrlContent.getURLContent(vo));
 	}
 	
-	private List<ConfVO> getConf(String content) {
+	private List<ConfVO> getConf(String content) throws Exception {
 		List<ConfVO> list = new ArrayList<ConfVO>();
 		if (StringUtils.isBlank(content)) {
 			return list;
@@ -82,8 +82,7 @@ public class PicConfigListImpl implements ConfigList{
 				content = content.substring(serverEnd);
 			}
 		}catch(Exception e){
-			e.printStackTrace();
-			logger.error("",e);
+			throw new Exception(e);
 		}
 		return list;
 	}

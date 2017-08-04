@@ -14,6 +14,6 @@ import top.lmoon.shadowsupdate.vo.ConfVO;
  */
 public interface ConfigList {
 	
-	List<ConfVO> getConfigList();
+	List<ConfVO> getConfigList() throws Exception;
 
 }

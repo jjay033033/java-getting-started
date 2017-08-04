@@ -42,12 +42,12 @@ public class TextConfigListImpl implements ConfigList {
 	 * @see priv.lmoon.shadowsupdate.config.ConfigList#getConfigList()
 	 */
 	@Override
-	public List<ConfVO> getConfigList() {
+	public List<ConfVO> getConfigList() throws Exception {
 		// TODO Auto-generated method stub
 		return getConf(UrlContent.getURLContent(vo));
 	}
 
-	private List<ConfVO> getConf(String content) {
+	private List<ConfVO> getConf(String content) throws Exception {
 //		System.out.println(content);
 		List<ConfVO> list = new ArrayList<ConfVO>();
 		if (StringUtils.isBlank(content)) {
@@ -96,10 +96,7 @@ public class TextConfigListImpl implements ConfigList {
 				content = content.substring(encryptionEndIdx);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(content);
-			logger.error("",e);
-			logger.error(content);
+			throw new Exception(e);
 		}
 
 		return list;

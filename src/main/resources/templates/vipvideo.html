@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'vipvideo')}">
+
+<body>
+
+
+<div class="container">
+  <h1>VipVideo visited remark</h1>
+  <ul th:each="vo : ${list}">
+    <li th:text="${vo.ctime}"/>
+    <li th:text="${vo.remark}"/>
+  </ul>
+</div>
+
+</body>
+</html>

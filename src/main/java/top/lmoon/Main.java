@@ -17,10 +17,12 @@
 package top.lmoon;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -37,8 +39,10 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import top.lmoon.heroku.dao.ConfsDAO;
+import top.lmoon.heroku.dao.VipVideoDAO;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
+import top.lmoon.vipvideo.vo.VipVideoVO;
 
 @Controller
 @SpringBootApplication
@@ -49,6 +53,9 @@ public class Main {
 	
 	@Autowired
 	private ConfsDAO confsDAO;
+	
+	@Autowired
+	private VipVideoDAO vipVideoDAO;
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Main.class, args);
@@ -82,38 +89,26 @@ public class Main {
 		System.err.println("Hello, logs!");
 		map.put("list", ShadowsUpdate.getss());
 		return "ss";
-		// String url =
-		// Thread.currentThread().getContextClassLoader().getResource("").toString().replace("file:/",
-		// "");
-		// File f1 = new File(url+"templates/db.html");
-		// File f2 = new File("shadowsocks/config.xml");
-		// File f3 = new File("d:/bb.xls");
-		// String a = f2.getPath();
-		// String b = f1.getPath();
-		// return
-		// f1.exists()+"_"+f2.exists()+"_"+f3.exists()+"_"+a+"_"+b+"_"+f3.getPath()+"_"+url;
+	}
+	
+	@RequestMapping("/vipAdd")
+	@ResponseBody
+	String vipAdd(Map<String, Object> map) {
+		System.err.println("vipAdd!");
+//		map.put("list", "");
+		int result = vipVideoDAO.insert(MapUtils.getString(map, "ip", ""));
+		return "Is Ok!:"+result;
+	}
+	
+	@RequestMapping("/vipGet")
+	String vipGet(Map<String, Object> map) {
+		System.err.println("vipAdd!");
+//		map.put("list", "");
+		List<VipVideoVO> list = vipVideoDAO.select();
+		map.put("list", list);
+		return "vipvideo";
 	}
 
-//	@RequestMapping("/db")
-//	String db(Map<String, Object> model) {
-//		try (Connection connection = dataSource.getConnection()) {
-//			Statement stmt = connection.createStatement();
-//			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-//			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-//			ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-//
-//			ArrayList<String> output = new ArrayList<String>();
-//			while (rs.next()) {
-//				output.add("Read from DB: " + rs.getTimestamp("tick"));
-//			}
-//
-//			model.put("records", output);
-//			return "db";
-//		} catch (Exception e) {
-//			model.put("message", e.getMessage());
-//			return "error";
-//		}
-//	}
 	
 	@RequestMapping("/selectConf")
 	String selectConf(@ModelAttribute(value="vo") ConfWebVO vo) {
@@ -148,5 +143,26 @@ public class Main {
 			return new HikariDataSource(config);
 		}
 	}
+	
+//	@RequestMapping("/db")
+//	String db(Map<String, Object> model) {
+//		try (Connection connection = dataSource.getConnection()) {
+//			Statement stmt = connection.createStatement();
+//			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
+//			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+//			ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+//
+//			ArrayList<String> output = new ArrayList<String>();
+//			while (rs.next()) {
+//				output.add("Read from DB: " + rs.getTimestamp("tick"));
+//			}
+//
+//			model.put("records", output);
+//			return "db";
+//		} catch (Exception e) {
+//			model.put("message", e.getMessage());
+//			return "error";
+//		}
+//	}
 
 }

@@ -100,9 +100,15 @@ public class ShadowsUpdate {
 		for (Iterator<Entry<String, ConfigList>> it = cMap.entrySet().iterator(); it.hasNext();) {
 			c = it.next().getValue();
 			if (c != null) {
-				List<ConfVO> cList = c.getConfigList();
-				if (cList != null && !cList.isEmpty()) {
-					list.addAll(cList);
+				try {
+					List<ConfVO> cList = c.getConfigList();
+					if (cList != null && !cList.isEmpty()) {
+						list.addAll(cList);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					logger.error("",e);
 				}
 			}
 		}
