@@ -84,9 +84,9 @@ public class Main {
 		
 		try {
 			String a = URLDecoder.decode(new String(Base64Coder.decodeBase64(cookie)), "utf-8");
-			String b = URLDecoder.decode(new String(Base64Coder.decodeBase64(cookie),"utf-8"), "utf-8");
-			String c = new String(Base64Coder.decodeBase64(cookie),"utf-8");
-			return a+"*******"+b+"*******"+c;
+//			String b = URLDecoder.decode(new String(Base64Coder.decodeBase64(cookie),"utf-8"), "utf-8");
+//			String c = new String(Base64Coder.decodeBase64(cookie),"utf-8");
+			return a;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
