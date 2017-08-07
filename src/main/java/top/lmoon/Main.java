@@ -121,7 +121,7 @@ public class Main {
 		try {
 			System.err.println("vipAdd!");
 			int result = vipVideoDAO.insert(ip);
-			return "Is Ok!:"+result;
+			return "{result:"+result+"}";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return e.getMessage();
