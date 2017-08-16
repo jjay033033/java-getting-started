@@ -19,6 +19,7 @@ package top.lmoon;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,8 @@ import org.springframework.web.util.HtmlUtils;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
 import top.lmoon.heroku.dao.ConfsDAO;
 import top.lmoon.heroku.dao.VipVideoDAO;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
@@ -135,16 +138,44 @@ public class Main {
 			if(pageNo==null||pageNo<1){
 				pageNo=1;
 			}
-			List<VipVideoVO> list = vipVideoDAO.select(pageNo,10);
+			int pageSize = 10;
+			List<VipVideoVO> list = vipVideoDAO.select(pageNo,pageSize);
 			int total = vipVideoDAO.selectCount();
+			int totalPage = (total-1)/pageSize+1;
 			map.put("list", list);
 			map.put("total", total);
+			map.put("totalPage", totalPage);
 			map.put("pageNo", pageNo);
 			return "vipvideo";
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put("message", e.getMessage());
 			return "error";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/vipGetJson")
+	String vipGetJson(Integer pageNo) {
+		try {
+			System.err.println("vipGetJson!");
+			if(pageNo==null||pageNo<1){
+				pageNo=1;
+			}
+			int pageSize = 10;
+			List<VipVideoVO> list = vipVideoDAO.select(pageNo,pageSize);
+			int total = vipVideoDAO.selectCount();
+			int totalPage = (total-1)/pageSize+1;
+			Map map = new HashMap<>();
+			map.put("list", list);
+			map.put("total", total);
+			map.put("totalPage", totalPage);
+			map.put("pageNo", pageNo);
+			JSONObject fromObject = JSONObject.fromObject(map);
+			return fromObject.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error:"+e.getMessage();
 		}
 	}
 

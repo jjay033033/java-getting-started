@@ -13,18 +13,19 @@
 	<div class="container">
 		<div>
 			<h1>VipVideo visited remark</h1>
-			<table border="1" width="100%">
+			<table id="vtable" border="1" width="100%">
 				<tr>
 					<td>时间</td>
 					<td>IP</td>
 				</tr>
-				<tr th:each="vo : ${list}">
+				<tr id="vtr" th:each="vo : ${list}">
 					<td th:text="${vo.ctime}"></td>
 					<td th:text="${vo.remark}"></td>
 				</tr>
 			</table>
 			<input id="total" th:value="${total}" type="hidden" />
 			<input id="pageNo" th:value="${pageNo}" type="hidden" />
+			<input id="totalPage" th:value="${totalPage}" type="hidden" />
 		</div>
 		<div id="wrapper">
 			<div class="gigantic pagination">

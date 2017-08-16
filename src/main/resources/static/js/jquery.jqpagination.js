@@ -131,7 +131,7 @@
 
 				// for mac + windows (read: other), maintain the cmd + ctrl click for new tab
 				if (!event.metaKey && !event.ctrlKey) {
-					//event.preventDefault();
+					event.preventDefault();
 					base.setPage($self.data('action'));
 				}
 				
