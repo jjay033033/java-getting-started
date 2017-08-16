@@ -138,7 +138,7 @@ public class Main {
 			if(pageNo==null||pageNo<1){
 				pageNo=1;
 			}
-			int pageSize = 10;
+			int pageSize = 20;
 			List<VipVideoVO> list = vipVideoDAO.select(pageNo,pageSize);
 			int total = vipVideoDAO.selectCount();
 			int totalPage = (total-1)/pageSize+1;
