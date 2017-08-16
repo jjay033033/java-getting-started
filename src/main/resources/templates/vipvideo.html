@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- jqPagination styles -->
+<link rel="stylesheet" href="../static/css/jqpagination.css" />
 
+<!-- scripts -->
+<script src="../static/js/jquery-1.7.2.min.js"></script>
+<script src="../static/js/jquery.jqpagination.js"></script>
+<script src="../static/js/scripts.js"></script>
+</head>
 <body>
+	<div class="container">
+		<div>
+			<h1>VipVideo visited remark</h1>
+			<table border="1" width="100%">
+				<tr>
+					<td>时间</td>
+					<td>IP</td>
+				</tr>
+				<tr th:each="vo : ${list}">
+					<td th:text="${vo.ctime}"></td>
+					<td th:text="${vo.remark}"></td>
+				</tr>
+			</table>
+			<input id="total" th:text="${total}" type="hidden" />
+			<input id="pageNo" th:text="${pageNo}" type="hidden" />
+		</div>
+		<div id="wrapper">
+			<div class="gigantic pagination">
+				<a href="#" class="first" data-action="first">&laquo;</a> <a
+					href="#" class="previous" data-action="previous">&lsaquo;</a> <input
+					type="text" readonly="readonly" /> <a href="#" class="next"
+					data-action="next">&rsaquo;</a> <a href="#" class="last"
+					data-action="last">&raquo;</a>
+			</div>
+			
+			<!-- should probably have a shower after that -->
+			
 
-
-<div class="container">
-  <h1>VipVideo visited remark</h1>
-  <table border="1" width="100%">
-  <tr>
-  <td>时间</td>
-  <td>IP</td>
-  </tr>
-  <tr th:each="vo : ${list}">
-  <td th:text="${vo.ctime}"></td>
-  <td th:text="${vo.remark}"></td>
-  </tr>
-  </table>
- <!--  <ul th:each="vo : ${list}">
-    <li>
-    <div th:text="${vo.ctime}"></div>
-    <div th:text="${vo.remark}"></div>
-    </li>
-  </ul> -->
-</div>
-
+		</div>
 </body>
 </html>

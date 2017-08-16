@@ -33,9 +33,9 @@ public class VipVideoDAO {
 	@Autowired
 	private DataSource dataSource;
 
-	public List<VipVideoVO> select() {
+	public List<VipVideoVO> select(int pageNo,int pageSize) {
 		try (Connection connection = dataSource.getConnection()) {
-			String sql = "SELECT * FROM vipvideo order by ctime desc";
+			String sql = "SELECT * FROM vipvideo order by ctime desc limit ? offset ?";
 			return JdbcTemplate.queryForList(connection, sql, new RowMapper<VipVideoVO>() {
 
 				@Override
@@ -46,7 +46,17 @@ public class VipVideoDAO {
 					vo.setRemark(rs.getString("remark"));
 					return vo;
 				}
-			}, new Object[0]);
+			}, new Object[]{pageSize,pageNo-1});
+		} catch (Exception e) {
+			logger.error("", e);
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public int selectCount() {
+		try (Connection connection = dataSource.getConnection()) {
+			String sql = "SELECT count(1) FROM vipvideo";
+			return JdbcTemplate.queryForInt(connection, sql, new Object[0]);
 		} catch (Exception e) {
 			logger.error("", e);
 			throw new RuntimeException(e);
