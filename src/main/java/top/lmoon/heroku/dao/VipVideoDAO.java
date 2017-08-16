@@ -46,7 +46,7 @@ public class VipVideoDAO {
 					vo.setRemark(rs.getString("remark"));
 					return vo;
 				}
-			}, new Object[]{pageSize,pageNo-1});
+			}, new Object[]{pageSize,(pageNo-1)*pageSize});
 		} catch (Exception e) {
 			logger.error("", e);
 			throw new RuntimeException(e);
