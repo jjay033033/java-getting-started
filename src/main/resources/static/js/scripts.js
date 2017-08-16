@@ -33,7 +33,7 @@ function refreshTable(url,pageNo) {
 		},
 		dataType : "json",
 		success : function(data) {
-			$('#vtr').empty(); // 清空resText里面的所有内容
+			$('#vtable').empty(); // 清空resText里面的所有内容
 			var html = '<tr><td>时间</td><td>IP</td></tr><tr>';
 			$.each(data.list, function(lIndex, vo) {
 				html += '<td>' + vo['ctime']
@@ -41,7 +41,7 @@ function refreshTable(url,pageNo) {
 						+ '</td>';
 			});
 			html += '</tr></table>';
-			$('#vtr').html(html);
+			$('#vtable').html(html);
 		}
 	});
 
