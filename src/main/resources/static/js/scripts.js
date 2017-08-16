@@ -7,7 +7,7 @@ $(document).ready(function() {
 			// alert(page);
 			$('.log').prepend('<li>Requested page ' + page + '</li>');
 //			window.location.href = '/vipGet?pageNo=' + page;
-			refreshTable('/vipGet',page);
+			refreshTable('/vipGetJson',page);
 		}
 	});
 
