@@ -7,7 +7,7 @@
 <!-- scripts -->
 <script src="../js/jquery-1.7.2.min.js"></script>
 <script src="../js/jquery.jqpagination.js"></script>
-
+<script src="../js/scripts.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -23,8 +23,8 @@
 					<td th:text="${vo.remark}"></td>
 				</tr>
 			</table>
-			<input id="total" th:text="${total}" type="hidden" />
-			<input id="pageNo" th:text="${pageNo}" type="hidden" />
+			<input id="total" th:value="${total}" type="hidden" />
+			<input id="pageNo" th:value="${pageNo}" type="hidden" />
 		</div>
 		<div id="wrapper">
 			<div class="gigantic pagination">
@@ -39,6 +39,5 @@
 			
 
 		</div>
-		<script src="../js/scripts.js"></script>
 </body>
 </html>
