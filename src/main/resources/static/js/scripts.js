@@ -13,10 +13,16 @@ $(document).ready(function() {
 
 });
 
-// <tr id="vtr" th:each="vo : ${list}">
-// <td th:text="${vo.ctime}"></td>
-// <td th:text="${vo.remark}"></td>
-// </tr>
+//<table id="vtable" border="1" width="100%">
+//<tr>
+//	<td>时间</td>
+//	<td>IP</td>
+//</tr>
+//<tr id="vtr" th:each="vo : ${list}">
+//	<td th:text="${vo.ctime}"></td>
+//	<td th:text="${vo.remark}"></td>
+//</tr>
+//</table>
 function refreshTable(url,pageNo) {
 
 	$.ajax({
@@ -28,12 +34,13 @@ function refreshTable(url,pageNo) {
 		dataType : "json",
 		success : function(data) {
 			$('#vtr').empty(); // 清空resText里面的所有内容
-			var html = '';
+			var html = '<tr><td>时间</td><td>IP</td></tr><tr>';
 			$.each(data.list, function(lIndex, vo) {
 				html += '<td>' + vo['ctime']
 						+ '</td><td>' + vo['remark']
 						+ '</td>';
 			});
+			html += '</tr></table>';
 			$('#vtr').html(html);
 		}
 	});

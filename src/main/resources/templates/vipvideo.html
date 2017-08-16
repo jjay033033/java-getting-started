@@ -18,7 +18,7 @@
 					<td>时间</td>
 					<td>IP</td>
 				</tr>
-				<tr id="vtr" th:each="vo : ${list}">
+				<tr th:each="vo : ${list}">
 					<td th:text="${vo.ctime}"></td>
 					<td th:text="${vo.remark}"></td>
 				</tr>
