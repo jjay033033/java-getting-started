@@ -14,7 +14,7 @@ public class VipVideoVO {
 	
 	private String remark;
 	
-	private Timestamp ctime;
+	private String ctime;
 
 	public String getRemark() {
 		return remark;
@@ -24,11 +24,11 @@ public class VipVideoVO {
 		this.remark = remark;
 	}
 
-	public Timestamp getCtime() {
+	public String getCtime() {
 		return ctime;
 	}
 
-	public void setCtime(Timestamp ctime) {
+	public void setCtime(String ctime) {
 		this.ctime = ctime;
 	}
 	

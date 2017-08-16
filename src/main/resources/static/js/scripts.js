@@ -36,7 +36,7 @@ function refreshTable(url,pageNo) {
 			$('#vtable').empty(); // 清空resText里面的所有内容
 			var html = '<tr><td>时间</td><td>IP</td></tr><tr>';
 			$.each(data.list, function(lIndex, vo) {
-				html += '<td>' + new Date(vo.ctime).format("yyyy-MM-dd hh:mm:ss")
+				html += '<td>' + vo.ctime
 						+ '</td><td>' + vo.remark
 						+ '</td>';
 			});
@@ -57,12 +57,8 @@ Date.prototype.format = function (fmt) { //
         "q+": Math.floor((this.getMonth() + 3) / 3), //Season
         "S": this.getMilliseconds() //millesecond
     };
-    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + 
-
-"").substr(4 - RegExp.$1.length));
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o)
-        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, 
-
-(RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }

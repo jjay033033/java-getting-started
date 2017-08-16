@@ -42,7 +42,7 @@ public class VipVideoDAO {
 				public VipVideoVO mapRow(ResultSet rs, int rowIndex) throws SQLException {
 					VipVideoVO vo = new VipVideoVO();
 					Timestamp ctime = rs.getTimestamp("ctime");
-					vo.setCtime(new Timestamp(ctime.getTime()+8L*60*60*1000));
+					vo.setCtime(new Timestamp(ctime.getTime()+8L*60*60*1000).toString());
 					vo.setRemark(rs.getString("remark"));
 					return vo;
 				}
