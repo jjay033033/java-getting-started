@@ -47,7 +47,7 @@ function refreshTable(url,pageNo) {
 
 }
 
-Date.prototype.Format = function (fmt) { //
+Date.prototype.format = function (fmt) { //
     var o = {
         "M+": this.getMonth() + 1, //Month
         "d+": this.getDate(), //Day
