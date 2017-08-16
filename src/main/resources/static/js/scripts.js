@@ -34,13 +34,13 @@ function refreshTable(url,pageNo) {
 		dataType : "json",
 		success : function(data) {
 			$('#vtable').empty(); // 清空resText里面的所有内容
-			var html = '<tr><td>时间</td><td>IP</td></tr><tr>';
+			var html = '<tr><td>时间</td><td>IP</td></tr>';
 			$.each(data.list, function(lIndex, vo) {
-				html += '<td>' + vo.ctime
+				html += '<tr><td>' + vo.ctime
 						+ '</td><td>' + vo.remark
-						+ '</td>';
+						+ '</td></tr>';
 			});
-			html += '</tr></table>';
+			html += '</table>';
 			$('#vtable').html(html);
 		}
 	});
