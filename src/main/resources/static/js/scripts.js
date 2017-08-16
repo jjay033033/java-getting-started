@@ -36,8 +36,8 @@ function refreshTable(url,pageNo) {
 			$('#vtable').empty(); // 清空resText里面的所有内容
 			var html = '<tr><td>时间</td><td>IP</td></tr><tr>';
 			$.each(data.list, function(lIndex, vo) {
-				html += '<td>' + vo['ctime']
-						+ '</td><td>' + vo['remark']
+				html += '<td>' + new Date(vo.ctime).format("yyyy-MM-dd hh:mm:ss")
+						+ '</td><td>' + vo.remark
 						+ '</td>';
 			});
 			html += '</tr></table>';
