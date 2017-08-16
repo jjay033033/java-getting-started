@@ -129,9 +129,12 @@ public class Main {
 	}
 	
 	@RequestMapping("/vipGet")
-	String vipGet(Map<String, Object> map,int pageNo) {
+	String vipGet(Map<String, Object> map,Integer pageNo) {
 		try {
 			System.err.println("vipGet!");
+			if(pageNo==null||pageNo<1){
+				pageNo=1;
+			}
 			List<VipVideoVO> list = vipVideoDAO.select(pageNo,10);
 			int total = vipVideoDAO.selectCount();
 			map.put("list", list);
