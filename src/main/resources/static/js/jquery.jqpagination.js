@@ -227,6 +227,12 @@
 		base.updateInput = function (prevent_paged) {
 			
 			var current_page = parseInt(base.options.current_page, 10);
+							
+			// set the input value
+			base.setInputValue(current_page);
+			
+			// set the link href attributes
+			base.setLinks(current_page);
 			
 			// we may want to prevent the paged callback from being fired
 			if (prevent_paged !== true) {
@@ -235,12 +241,6 @@
 				base.options.paged(current_page);
 			
 			}
-			
-			// set the input value
-			base.setInputValue(current_page);
-			
-			// set the link href attributes
-			base.setLinks(current_page);
 			
 		};
 		
