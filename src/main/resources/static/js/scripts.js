@@ -5,17 +5,6 @@ $(document).ready(function() {
 		currentPage = 1;
 	}
 	refreshTable(currentPage);
-	
-	$('.pagination').jqPagination({
-		link_string : '/vipGet?pageNo={page_number}',
-		max_page : $('#totalPage').val(),
-		paged : function(page) {
-			// alert(page);
-			$('.log').prepend('<li>Requested page ' + page + '</li>');
-//			window.location.href = '/vipGet?pageNo=' + page;
-			refreshTable(page);
-		}
-	});
 
 });
 
@@ -60,6 +49,15 @@ function refreshTable(pageNo) {
 			});
 			html += '</table>';
 			$('#vtable').html(html);
+			//为页面添加翻页函数
+			$('.pagination').jqPagination({
+				link_string : '/vipGet?pageNo={page_number}',
+				max_page : $('#totalPage').val(),
+				paged : function(page) {
+					$('.log').prepend('<li>Requested page ' + page + '</li>');
+					refreshTable(page);
+				}
+			});
 		}
 	});
 
