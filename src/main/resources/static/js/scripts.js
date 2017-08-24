@@ -29,7 +29,7 @@ function getParam(name){
 //</tr>
 //</table>
 function refreshTable(pageNo) {
-
+	$('#vtable').html("Loading.....");
 	$.ajax({
 		type : "GET",
 		url : "/vipGetJson",
@@ -53,8 +53,7 @@ function refreshTable(pageNo) {
 				max_page : data.totalPage,
 				paged : function(page) {
 					//$('.log').prepend('<li>Requested page ' + page + '</li>');
-					//$('#vtable').empty(); // 清空resText里面的所有内容
-					$('#vtable').html("Loading.....");
+					//$('#vtable').empty(); // 清空resText里面的所有内容					
 					refreshTable(page);
 				}
 			});
