@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	refreshTable(pageNo);
+	
 	$('.pagination').jqPagination({
 		link_string : '/vipGet?pageNo={page_number}',
 		max_page : $('#totalPage').val(),
@@ -7,7 +9,7 @@ $(document).ready(function() {
 			// alert(page);
 			$('.log').prepend('<li>Requested page ' + page + '</li>');
 //			window.location.href = '/vipGet?pageNo=' + page;
-			refreshTable('/vipGetJson',page);
+			refreshTable(page);
 		}
 	});
 
@@ -23,11 +25,11 @@ $(document).ready(function() {
 //	<td th:text="${vo.remark}"></td>
 //</tr>
 //</table>
-function refreshTable(url,pageNo) {
+function refreshTable(pageNo) {
 
 	$.ajax({
 		type : "GET",
-		url : url,
+		url : "/vipGetJson",
 		data : {
 			pageNo : pageNo
 		},
