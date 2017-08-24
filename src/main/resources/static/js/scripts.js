@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	var totalPage = 0;
 	var currentPage = getParam("pageNo");
 	if(currentPage==null){
 		currentPage = 1;
@@ -50,6 +50,7 @@ function refreshTable(pageNo) {
 		},
 		dataType : "json",
 		success : function(data) {
+			totalPage = data.totalPage;
 			$('#vtable').empty(); // 清空resText里面的所有内容
 			var html = '<tr><td>时间</td><td>IP</td></tr>';
 			$.each(data.list, function(lIndex, vo) {
