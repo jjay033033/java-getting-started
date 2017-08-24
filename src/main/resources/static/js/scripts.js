@@ -52,7 +52,7 @@ function refreshTable(pageNo) {
 			//为页面添加翻页函数
 			$('.pagination').jqPagination({
 				link_string : '/vipGet?pageNo={page_number}',
-				max_page : $('#totalPage').val(),
+				max_page : totalPage,
 				paged : function(page) {
 					$('.log').prepend('<li>Requested page ' + page + '</li>');
 					refreshTable(page);
