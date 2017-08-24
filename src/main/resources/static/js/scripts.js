@@ -38,7 +38,7 @@ function refreshTable(pageNo) {
 		},
 		dataType : "json",
 		success : function(data) {
-			$('#vtable').empty(); // 清空resText里面的所有内容
+			
 			var html = '<tr><td>时间</td><td>IP</td></tr>';
 			$.each(data.list, function(lIndex, vo) {
 				html += '<tr><td>' + vo.ctime
@@ -52,7 +52,9 @@ function refreshTable(pageNo) {
 				link_string : '/vipGet?pageNo={page_number}',
 				max_page : data.totalPage,
 				paged : function(page) {
-					$('.log').prepend('<li>Requested page ' + page + '</li>');
+					//$('.log').prepend('<li>Requested page ' + page + '</li>');
+					$('#vtable').empty(); // 清空resText里面的所有内容
+					$('#vtable').html("loading.....");
 					refreshTable(page);
 				}
 			});
