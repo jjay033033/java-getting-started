@@ -64,16 +64,16 @@
   }
 
 .gigantic.pagination a {
-  height: 30px;
-  width: 30px;
-  font-size: 30px;
-  line-height: 25px;
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  line-height: 15px;
   }
 
 .gigantic.pagination input {
-  width: 200px;
-  height: 30px;
-  font-size: 20px;
+  width: 120px;
+  height: 20px;
+  font-size: 13px;
   }
 
 /* log element for demo purposes */
