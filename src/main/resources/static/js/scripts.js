@@ -53,7 +53,7 @@ function refreshTable(pageNo) {
 				max_page : data.totalPage,
 				paged : function(page) {
 					//$('.log').prepend('<li>Requested page ' + page + '</li>');
-					$('#vtable').empty(); // 清空resText里面的所有内容
+					//$('#vtable').empty(); // 清空resText里面的所有内容
 					$('#vtable').html("Loading.....");
 					refreshTable(page);
 				}
