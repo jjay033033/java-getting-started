@@ -1,0 +1,27 @@
+/* Border styles */
+#vtable thead, #vtable tr {
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: rgb(235, 242, 224);
+}
+#vtable {
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: rgb(235, 242, 224);
+}
+
+/* Padding and font style */
+#vtable td, #vtable th {
+padding: 5px 10px;
+font-size: 12px;
+font-family: Verdana;
+color: rgb(149, 170, 109);
+}
+
+/* Alternating background colors */
+#vtable tr:nth-child(even) {
+background: rgb(230, 238, 214)
+}
+#vtable tr:nth-child(odd) {
+background: #FFF
+}

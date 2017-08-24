@@ -3,6 +3,7 @@
 <head>
 <!-- jqPagination styles -->
 <link rel="stylesheet" href="../css/jqpagination.css" />
+<link rel="stylesheet" href="../css/main.css" />
 
 <!-- scripts -->
 <script src="../js/jquery-1.7.2.min.js"></script>
@@ -13,10 +14,10 @@
 	<div class="container">
 		<div>
 			<h1>VipVideo visited remark</h1>
-			<table id="vtable" border="1" width="100%">
+			<table id="vtable" width="100%">
 				<tr>
-					<td>时间</td>
-					<td>IP</td>
+					<th>时间</th>
+					<th>IP</th>
 				</tr>
 				<tr th:each="vo : ${list}">
 					<td th:text="${vo.ctime}"></td>
