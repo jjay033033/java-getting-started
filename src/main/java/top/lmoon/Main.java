@@ -133,17 +133,17 @@ public class Main {
 	String vipGet(Map<String, Object> map,Integer pageNo) {
 		try {
 			System.err.println("vipGet!");
-			if(pageNo==null||pageNo<1){
-				pageNo=1;
-			}
-			int pageSize = 20;
-			List<VipVideoVO> list = vipVideoDAO.select(pageNo,pageSize);
-			int total = vipVideoDAO.selectCount();
-			int totalPage = (total-1)/pageSize+1;
-			map.put("list", list);
-			map.put("total", total);
-			map.put("totalPage", totalPage);
-			map.put("pageNo", pageNo);
+//			if(pageNo==null||pageNo<1){
+//				pageNo=1;
+//			}
+//			int pageSize = 20;
+//			List<VipVideoVO> list = vipVideoDAO.select(pageNo,pageSize);
+//			int total = vipVideoDAO.selectCount();
+//			int totalPage = (total-1)/pageSize+1;
+//			map.put("list", list);
+//			map.put("total", total);
+//			map.put("totalPage", totalPage);
+//			map.put("pageNo", pageNo);
 			return "vipvideo";
 		} catch (Exception e) {
 			e.printStackTrace();

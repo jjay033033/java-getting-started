@@ -1,6 +1,10 @@
 $(document).ready(function() {
 
-	refreshTable(pageNo);
+	var currentPage = getParam("pageNo");
+	if(currentPage==null){
+		currentPage = 1;
+	}
+	refreshTable(currentPage);
 	
 	$('.pagination').jqPagination({
 		link_string : '/vipGet?pageNo={page_number}',
@@ -14,6 +18,17 @@ $(document).ready(function() {
 	});
 
 });
+
+
+function getParam(name){
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null){
+    	 return unescape(r[2]); 
+     }else{
+    	 return null;
+     }
+}
 
 //<table id="vtable" border="1" width="100%">
 //<tr>
