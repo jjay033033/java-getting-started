@@ -11,7 +11,7 @@ border-bottom-color: rgb(235, 242, 224);
 }
 
 /* Padding and font style */
-#vtable td, #vtable th {padding: 5px 10px;font-size: 12px;font-family: Verdana;color: rgb(84, 128, 1);}
+#vtable td, #vtable th {padding: 5px 10px;font-size: 15px;font-family: Verdana;color: rgb(84, 128, 1);}
 
 /* Alternating background colors */
 #vtable tr:nth-child(even) {
