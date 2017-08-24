@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	var totalPage = 0;
 	var currentPage = getParam("pageNo");
 	if(currentPage==null){
 		currentPage = 1;
@@ -39,7 +38,6 @@ function refreshTable(pageNo) {
 		},
 		dataType : "json",
 		success : function(data) {
-			totalPage = data.totalPage;
 			$('#vtable').empty(); // 清空resText里面的所有内容
 			var html = '<tr><td>时间</td><td>IP</td></tr>';
 			$.each(data.list, function(lIndex, vo) {
@@ -52,7 +50,7 @@ function refreshTable(pageNo) {
 			//为页面添加翻页函数
 			$('.pagination').jqPagination({
 				link_string : '/vipGet?pageNo={page_number}',
-				max_page : totalPage,
+				max_page : data.totalPage,
 				paged : function(page) {
 					$('.log').prepend('<li>Requested page ' + page + '</li>');
 					refreshTable(page);
