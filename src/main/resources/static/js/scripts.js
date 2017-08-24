@@ -54,7 +54,7 @@ function refreshTable(pageNo) {
 				paged : function(page) {
 					//$('.log').prepend('<li>Requested page ' + page + '</li>');
 					$('#vtable').empty(); // 清空resText里面的所有内容
-					$('#vtable').html("loading.....");
+					$('#vtable').html("Loading.....");
 					refreshTable(page);
 				}
 			});
