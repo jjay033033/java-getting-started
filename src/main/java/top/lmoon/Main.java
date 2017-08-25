@@ -102,14 +102,27 @@ public class Main {
 		return "ss";
 	}
 	
-	@RequestMapping("/retoreVip")
+//	@RequestMapping("/retoreVip")
+//	@ResponseBody
+//	String retoreVip() {
+//		try {
+//			System.err.println("retoreVip!");
+//			int result = vipVideoDAO.dropTable();
+//			int result2 = vipVideoDAO.createTable();
+//			return "r1:"+result+"r2:"+result2;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return e.getMessage();
+//		}
+//	}
+	
+	@RequestMapping("/alterVip")
 	@ResponseBody
 	String retoreVip() {
 		try {
-			System.err.println("retoreVip!");
-			int result = vipVideoDAO.dropTable();
-			int result2 = vipVideoDAO.createTable();
-			return "r1:"+result+"r2:"+result2;
+			System.err.println("alterVip!");
+			int result = vipVideoDAO.alterTable();
+			return "r1:"+result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return e.getMessage();
