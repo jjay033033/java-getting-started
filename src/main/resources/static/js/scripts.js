@@ -29,7 +29,7 @@ function refreshTable(pageNo) {
 		dataType : "json",
 		success : function(data) {
 			
-			var html = '<tr><th>TIME</th><th>IP</th></tr>';
+			var html = '<tr><th style="width: 210px;">TIME</th><th>IP</th></tr>';
 			$.each(data.list, function(lIndex, vo) {
 				html += '<tr><td>' + vo.ctime
 						+ '</td><td>' + vo.remark
