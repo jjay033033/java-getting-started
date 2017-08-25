@@ -121,7 +121,7 @@ public class Main {
 	String vipAdd(String ip) {
 		try {
 			System.err.println("vipAdd!");
-			int result = vipVideoDAO.insert(ip);
+			int result = vipVideoDAO.insert(URLDecoder.decode(new String(Base64Coder.decodeBase64(ip)), "utf-8"));
 			return "{result:"+result+"}";
 		} catch (Exception e) {
 			e.printStackTrace();
