@@ -105,7 +105,7 @@ public class VipVideoDAO {
 	public int alterTable(){
 		try {
 			Connection connection = dataSource.getConnection();
-			String sql = "alter table vipvideo alter column remark text";
+			String sql = "alter table vipvideo alter column remark text not null";
 			return JdbcTemplate.executeUpdate(connection, sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
