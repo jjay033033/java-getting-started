@@ -47,7 +47,9 @@ function refreshTable(pageNo) {
 			});
 			html += '</table>';
 			$('#vtable').html(html);
-			//为页面添加翻页函数
+			//移除页面旧翻页函数
+			$('.pagination').unbind();
+			//为页面添加新翻页函数
 			$('.pagination').jqPagination({
 				link_string : '/vipGet?pageNo={page_number}',
 				max_page : data.totalPage,
