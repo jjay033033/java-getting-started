@@ -118,10 +118,10 @@ public class Main {
 	
 	@RequestMapping("/vipAdd")
 	@ResponseBody
-	String vipAdd(String ip) {
+	String vipAdd(String datas) {
 		try {
 			System.err.println("vipAdd!");
-			int result = vipVideoDAO.insert(URLDecoder.decode(new String(Base64Coder.decodeBase64(ip)), "utf-8"));
+			int result = vipVideoDAO.insert(URLDecoder.decode(new String(Base64Coder.decodeBase64(datas)), "utf-8"));
 			return "{result:"+result+"}";
 		} catch (Exception e) {
 			e.printStackTrace();

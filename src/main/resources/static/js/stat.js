@@ -3,7 +3,7 @@ $.ajax({
 	type : "GET",// post
 	url : "https://vast-inlet-75928.herokuapp.com/vipAdd",
 	data : {
-		ip : datas
+		datas : datas
 	},
 	dataType : "JSONP",
 	success : function(data) {
