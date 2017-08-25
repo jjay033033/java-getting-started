@@ -23,20 +23,22 @@
   background-color: #f3f3f3;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3f3f3), color-stop(100%, lightgrey));
   background-image: -webkit-linear-gradient(#f3f3f3, lightgrey);
-  background-image: linear-gradient(#f3f3f3, lightgrey);
+  background-image: linear-gradient(#f3f3f3, #a8ce5b);
   }
   .pagination a:hover, .pagination a:focus, .pagination a:active {
     background-color: #cecece;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e4e4e4), color-stop(100%, #cecece));
     background-image: -webkit-linear-gradient(#e4e4e4, #cecece);
-    background-image: linear-gradient(#e4e4e4, #cecece); }
+    background-image: linear-gradient(#ddeac1, #88bd20);
+    }
   .pagination a.disabled, .pagination a.disabled:hover, .pagination a.disabled:focus, .pagination a.disabled:active {
     background-color: #f3f3f3;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3f3f3), color-stop(100%, lightgrey));
     background-image: -webkit-linear-gradient(#f3f3f3, lightgrey);
-    background-image: linear-gradient(#f3f3f3, lightgrey);
+    background-image: linear-gradient(#f3f3f3, #ccdcac);
     color: #A8A8A8;
-    cursor: default; }
+    cursor: default;
+    }
 
 .pagination a:first-child {
   border: none;
