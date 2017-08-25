@@ -1,9 +1,9 @@
 $(document).ready(function() {
-	var currentPage = getParam("pageNo");
-	if(currentPage==null){
-		currentPage = 1;
-	}
-	refreshTable(currentPage);
+//	var currentPage = getParam("pageNo");
+//	if(currentPage==null){
+//		currentPage = 1;
+//	}
+	refreshTable(1);
 
 });
 
@@ -18,16 +18,6 @@ function getParam(name){
      }
 }
 
-//<table id="vtable" border="1" width="100%">
-//<tr>
-//	<td>时间</td>
-//	<td>IP</td>
-//</tr>
-//<tr id="vtr" th:each="vo : ${list}">
-//	<td th:text="${vo.ctime}"></td>
-//	<td th:text="${vo.remark}"></td>
-//</tr>
-//</table>
 function refreshTable(pageNo) {
 	$('#vtable').html("Loading.....");
 	$.ajax({
@@ -54,9 +44,7 @@ function refreshTable(pageNo) {
 				link_string : '/vipGet?pageNo={page_number}',
 				max_page : data.totalPage,
 				current_page : pageNo,
-				paged : function(page) {
-					//$('.log').prepend('<li>Requested page ' + page + '</li>');
-					//$('#vtable').empty(); // 清空resText里面的所有内容					
+				paged : function(page) {			
 					refreshTable(page);
 				}
 			});
