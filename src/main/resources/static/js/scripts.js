@@ -51,6 +51,7 @@ function refreshTable(pageNo) {
 			$('.pagination').jqPagination({
 				link_string : '/vipGet?pageNo={page_number}',
 				max_page : data.totalPage,
+				current_page : pageNo,
 				paged : function(page) {
 					//$('.log').prepend('<li>Requested page ' + page + '</li>');
 					//$('#vtable').empty(); // 清空resText里面的所有内容					
