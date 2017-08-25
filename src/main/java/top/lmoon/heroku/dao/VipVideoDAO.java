@@ -100,11 +100,11 @@ public class VipVideoDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	//alter table 表名称 modify 字段名称 字段类型
+		
 	public int alterTable(){
 		try {
 			Connection connection = dataSource.getConnection();
+			//postgresql
 			String sql = "alter table vipvideo alter column remark TYPE text";
 			return JdbcTemplate.executeUpdate(connection, sql, new Object[0]);
 		} catch (Exception e) {
