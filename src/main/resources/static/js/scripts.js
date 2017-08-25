@@ -39,7 +39,7 @@ function refreshTable(pageNo) {
 		dataType : "json",
 		success : function(data) {
 			
-			var html = '<tr><td>时间</td><td>IP</td></tr>';
+			var html = '<tr><th>TIME</th><th>IP</th></tr>';
 			$.each(data.list, function(lIndex, vo) {
 				html += '<tr><td>' + vo.ctime
 						+ '</td><td>' + vo.remark
