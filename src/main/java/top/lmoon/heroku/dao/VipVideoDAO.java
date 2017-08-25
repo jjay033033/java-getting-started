@@ -92,7 +92,7 @@ public class VipVideoDAO {
 	public int createTable(){
 		try {
 			Connection connection = dataSource.getConnection();
-			String sql = "CREATE TABLE IF NOT EXISTS vipvideo (remark varchar(64),ctime timestamp)";
+			String sql = "CREATE TABLE IF NOT EXISTS vipvideo (remark text,ctime timestamp)";
 			return JdbcTemplate.executeUpdate(connection, sql, new Object[0]);
 		} catch (Exception e) {
 			System.err.println(e);
