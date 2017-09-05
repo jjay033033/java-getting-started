@@ -49,6 +49,10 @@ public class ConfsDAO {
 	}
 	
 	public int updateConf(ConfWebVO vo) {
+		return updateConf(vo.getConf());
+	}
+	
+	public int updateConf(String conf) {
 		try (Connection connection = dataSource.getConnection()) {
 //			Statement stmt = connection.createStatement();
 //			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS confs (id int NOT NULL,conf text,PRIMARY KEY(id))");
@@ -59,7 +63,7 @@ public class ConfsDAO {
 //			ps.setString(2, vo.getConf());
 //			int result = ps.executeUpdate();
 			String sql = "update confs set conf=? where id=1";
-			return JdbcTemplate.executeUpdate(connection, sql, new Object[]{vo.getConf()});
+			return JdbcTemplate.executeUpdate(connection, sql, new Object[]{conf});
 		} catch (Exception e) {
 			logger.error("",e);
 			throw new RuntimeException(e);

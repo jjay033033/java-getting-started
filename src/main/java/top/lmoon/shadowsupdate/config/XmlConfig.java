@@ -8,17 +8,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
 
 import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.util.XmlMap;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
 
+
 public class XmlConfig {
 	
 	private static final Logger logger = Logger.getLogger(XmlConfig.class);
-	
-	private static final String path = "shadowsocks/config.xml";
 	
 	private static XmlConfig xmlConfig;
 	
@@ -32,7 +30,7 @@ public class XmlConfig {
 	
 	private void init(){
 		try {
-			XmlMap xm = new XmlMap(path);
+			XmlMap xm = new XmlMap(SysConstants.CONFIG_PATH);
 			map = xm.getConfigMap();
 			if (map == null || map.isEmpty()) {
 				throw new FileNotFoundException();
@@ -108,6 +106,18 @@ public class XmlConfig {
 		}
 		return xmlConfig;
 	}
+	
+	public static void resetInstance(){
+		xmlConfig = null;
+	}
+	
+//	public ServerConfigVo getServerConfigVo(String id){
+//		ServerConfigVo vo = serverMap.get(id);
+//		if(vo == null){
+//			vo = new ServerConfigVo();
+//		}
+//		return vo;
+//	}
 	
 	/**
 	 * 整个xml文件的map
