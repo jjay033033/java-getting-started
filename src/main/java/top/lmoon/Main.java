@@ -81,7 +81,7 @@ public class Main {
 	@RequestMapping("/test2")
 	@ResponseBody
 	String test2(String cookie) {
-		System.err.println("Hello, test2!");
+		System.err.println("Hello, test2!!!");
 		
 		try {
 			String a = URLDecoder.decode(new String(Base64Coder.decodeBase64(cookie)), "utf-8");
