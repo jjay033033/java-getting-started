@@ -82,7 +82,7 @@ public class Main {
 	@ResponseBody
 	String test2(String cookie) {
 		System.err.println("Hello, test2!!!");
-		
+		System.err.println("Hello, test2!!!!!");
 		try {
 			String a = URLDecoder.decode(new String(Base64Coder.decodeBase64(cookie)), "utf-8");
 //			String b = URLDecoder.decode(new String(Base64Coder.decodeBase64(cookie),"utf-8"), "utf-8");
