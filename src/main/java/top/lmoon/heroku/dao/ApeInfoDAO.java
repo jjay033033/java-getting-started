@@ -26,7 +26,7 @@ import top.lmoon.vipvideo.vo.VipVideoVO;
  * @date 2017年8月3日
  * 
  */
-@Component("apeInfoDAO")
+@Component("vipVideoDAO")
 public class ApeInfoDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(ApeInfoDAO.class);
