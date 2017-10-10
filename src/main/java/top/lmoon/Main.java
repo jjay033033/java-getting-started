@@ -16,6 +16,8 @@
 
 package top.lmoon;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -110,10 +112,10 @@ public class Main {
 	
 	@RequestMapping("/qrcode")
 	@ResponseBody
-	byte[] qrcode(String url) {
+	OutputStream qrcode(String url) {
 		System.err.println("Hello, qrcode!");
 		if(StringUtils.isBlank(url)){
-			return new byte[0];
+			return new ByteArrayOutputStream();
 		}
 		// map.put("list", "");
 		return new ZxingQRcoder().encode(url);

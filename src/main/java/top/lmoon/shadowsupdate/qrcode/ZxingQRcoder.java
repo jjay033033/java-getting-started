@@ -4,10 +4,10 @@
 package top.lmoon.shadowsupdate.qrcode;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -75,19 +75,18 @@ public class ZxingQRcoder implements QRcoder {
 		return bitMatrix;
 	}
 	
-	public byte[] encode(String content){
+	public OutputStream encode(String content){
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
 			String format = "png";// 图像类型
-			BitMatrix bitMatrix = getBitMatrix(content);// 生成矩阵
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			MatrixToImageWriter.writeToStream(bitMatrix, format, baos);
-			return baos.toByteArray();
+			BitMatrix bitMatrix = getBitMatrix(content);// 生成矩阵			
+			MatrixToImageWriter.writeToStream(bitMatrix, format, baos);		
 //			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("", e);
-			return new byte[0];
 		}
+		return baos;
 	}
 
 	/*
