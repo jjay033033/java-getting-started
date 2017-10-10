@@ -6,6 +6,7 @@ package top.lmoon.shadowsupdate.qrcode;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
@@ -77,11 +78,11 @@ public class ZxingQRcoder implements QRcoder {
 	
 	public void encode(String content, OutputStream os){
 		try {
-			String format = "jpg";// 图像类型
+			String format = "jpeg";// 图像类型
 			BitMatrix bitMatrix = getBitMatrix(content);// 生成矩阵			
-//			MatrixToImageWriter.writeToStream(bitMatrix, format, os);		
-			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
-			ImageIO.write(bufferedImage, format, os);
+			MatrixToImageWriter.writeToStream(bitMatrix, format, os);		
+//			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+//			ImageIO.write(bufferedImage, format, os);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("", e);
@@ -154,8 +155,9 @@ public class ZxingQRcoder implements QRcoder {
 
 	public static void main(String[] args) throws WriterException, IOException {
 		ZxingQRcoder qr = new ZxingQRcoder();
-		System.out.println(qr.decode("http://my.shadowsocks8.org/images/server03.png"));
-		// qr.testEncode();
+		qr.encode("http://my.shadowsocks8.org/", new FileOutputStream(new File("d://tt.jpg")));
+//		System.out.println(qr.decode("http://my.shadowsocks8.org/images/server03.png"));
+//		 qr.testEncode();
 		// qr.testDecode();
 	}
 

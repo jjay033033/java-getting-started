@@ -28,7 +28,7 @@ public class QrcodeServlet extends HttpServlet{
 		String content = req.getParameter("url");
 //		BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
 		qrcoder.encode(content, resp.getOutputStream());
-		resp.setContentType("image/*");
+		resp.setContentType("image/jpeg;charset=GB2312");
 	}
 	
 	
