@@ -77,10 +77,11 @@ public class ZxingQRcoder implements QRcoder {
 	
 	public void encode(String content, OutputStream os){
 		try {
-			String format = "png";// 图像类型
+			String format = "jpg";// 图像类型
 			BitMatrix bitMatrix = getBitMatrix(content);// 生成矩阵			
-			MatrixToImageWriter.writeToStream(bitMatrix, format, os);		
-//			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+//			MatrixToImageWriter.writeToStream(bitMatrix, format, os);		
+			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+			ImageIO.write(bufferedImage, format, os);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("", e);
