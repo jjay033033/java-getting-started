@@ -10,7 +10,7 @@
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div th:each="entry:${list}">
-			<a th:attr="id=${entry.id},onMouseOver='javascript:showImg('+${entry.url}+')'" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>
+			<a th:attr="id=${entry.id},onMouseOver='javascript:showImg('\'+${entry.url}+\'');'" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>
 		</div>
 	</div>
 	<div>
