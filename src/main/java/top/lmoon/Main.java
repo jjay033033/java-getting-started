@@ -24,6 +24,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -45,6 +46,7 @@ import top.lmoon.heroku.dao.VipVideoDAO;
 import top.lmoon.mail.MailUtil;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
+import top.lmoon.shadowsupdate.qrcode.ZxingQRcoder;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
 import top.lmoon.util.ExceptionUtil;
 import top.lmoon.vipvideo.vo.VipVideoVO;
@@ -104,6 +106,20 @@ public class Main {
 			MailUtil.asyncSendErrorEmail(ExceptionUtil.getExceptionMessage(e));
 			return e.getMessage();
 		}
+	}
+	
+	@RequestMapping("/qrcode")
+	@ResponseBody
+	byte[] qrcode(String url) {
+		System.err.println("Hello, qrcode!");
+		if(StringUtils.isBlank(url)){
+			return new byte[0];
+		}
+		// map.put("list", "");
+		return new ZxingQRcoder().encode(url);
+		// return "<a
+		// href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello
+		// world!</a>";
 	}
 
 	@RequestMapping("/ss")

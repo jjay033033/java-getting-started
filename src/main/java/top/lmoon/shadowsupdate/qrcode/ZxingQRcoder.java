@@ -4,9 +4,10 @@
 package top.lmoon.shadowsupdate.qrcode;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -53,13 +54,8 @@ public class ZxingQRcoder implements QRcoder {
 	@Override
 	public void encode(String content, String filepath) {
 		try {
-			int width = 180; // 图像宽度
-			int height = 180; // 图像高度
 			String format = "png";// 图像类型
-			Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
-			hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-			hints.put(EncodeHintType.MARGIN, 1);
-			BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);// 生成矩阵
+			BitMatrix bitMatrix = getBitMatrix(content);// 生成矩阵
 			Path path = FileSystems.getDefault().getPath(filepath);
 			MatrixToImageWriter.writeToPath(bitMatrix, format, path);// 输出图像
 		} catch (Exception e) {
@@ -67,6 +63,31 @@ public class ZxingQRcoder implements QRcoder {
 			logger.error("", e);
 		}
 
+	}
+
+	private BitMatrix getBitMatrix(String content) throws WriterException {
+		int width = 180; // 图像宽度
+		int height = 180; // 图像高度
+		Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
+		hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+		hints.put(EncodeHintType.MARGIN, 1);
+		BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);// 生成矩阵
+		return bitMatrix;
+	}
+	
+	public byte[] encode(String content){
+		try {
+			String format = "png";// 图像类型
+			BitMatrix bitMatrix = getBitMatrix(content);// 生成矩阵
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			MatrixToImageWriter.writeToStream(bitMatrix, format, baos);
+			return baos.toByteArray();
+//			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("", e);
+			return new byte[0];
+		}
 	}
 
 	/*
@@ -85,7 +106,7 @@ public class ZxingQRcoder implements QRcoder {
 			Map<DecodeHintType, Object> hints = new HashMap<DecodeHintType, Object>();
 			hints.put(DecodeHintType.CHARACTER_SET, "UTF-8");
 			hints.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
-//			hint.put(DecodeHintType., "UTF-8");
+			// hint.put(DecodeHintType., "UTF-8");
 			Result result = new MultiFormatReader().decode(binaryBitmap, hints);
 			return result.getText();
 		} catch (Exception e) {
@@ -136,7 +157,7 @@ public class ZxingQRcoder implements QRcoder {
 	public static void main(String[] args) throws WriterException, IOException {
 		ZxingQRcoder qr = new ZxingQRcoder();
 		System.out.println(qr.decode("http://my.shadowsocks8.org/images/server03.png"));
-//		qr.testEncode();
+		// qr.testEncode();
 		// qr.testDecode();
 	}
 

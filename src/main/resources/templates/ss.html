@@ -4,21 +4,33 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <title>Hello LMoon!</title>
-
+<script src="../js/jquery-1.7.2.min.js"></script>
 </head>
 <body>
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div th:each="entry:${list}">
-			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}">Hello LMoon!</a>
+			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" th:attr="onMouseOver=javascript:showImg(${entry.url})">Hello LMoon!</a>
 		</div>
+	</div>
+	<div>
+		<img id="qrimg" src="/qrcode?url=">
 	</div>
 	<script language="javascript" type="text/javascript"> 
 	var abc = document.getElementById('ids');
 	if(abc && navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){
 		abc.click();
 	}
+	function showImg(url){
+		$.ajax({ 
+				url: "/qrcode?url="+url, 
+				context: document.body,
+				success: function(data){
+					document.getElementById('qrimg').src = data;
+	      		}
+			  });
 		
+	}	
 	</script>
 </body>
 </html>
