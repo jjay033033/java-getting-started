@@ -26,8 +26,9 @@ public class QrcodeServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String content = req.getParameter("url");
-		BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
-		qrcoder.encode(content, bos);
+//		BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
+		qrcoder.encode(content, resp.getOutputStream());
+		resp.setContentType("image/*");
 	}
 	
 	
