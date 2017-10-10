@@ -22,13 +22,14 @@
 		abc.click();
 	}
 	function showImg(url){
-		$.ajax({ 
+		document.getElementById('qrimg').src = "/s/qrcode?url="+url;
+		/* $.ajax({ 
 				url: "/s/qrcode?url="+url, 
 				context: document.body,
 				success: function(data){
 					document.getElementById('qrimg').src = data;
 	      		}
-			  });
+			  }); */
 		
 	}	
 	</script>
