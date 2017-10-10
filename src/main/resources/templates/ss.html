@@ -23,7 +23,7 @@
 	}
 	function showImg(url){
 		$.ajax({ 
-				url: "/qrcode?url="+url, 
+				url: "/s/qrcode?url="+url, 
 				context: document.body,
 				success: function(data){
 					document.getElementById('qrimg').src = data;

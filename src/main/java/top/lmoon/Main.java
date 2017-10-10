@@ -110,19 +110,15 @@ public class Main {
 		}
 	}
 	
-	@RequestMapping("/qrcode")
-	@ResponseBody
-	OutputStream qrcode(String url) {
-		System.err.println("Hello, qrcode!");
-		if(StringUtils.isBlank(url)){
-			return new ByteArrayOutputStream();
-		}
-		// map.put("list", "");
-		return new ZxingQRcoder().encode(url);
-		// return "<a
-		// href=\"ss://cmM0LW1kNTo3MTk3MzU1NkAxMzguNjguNjEuNDI6MjM0NTYK\">hello
-		// world!</a>";
-	}
+//	@RequestMapping("/qrcode")
+//	@ResponseBody
+//	OutputStream qrcode(String url) {
+//		System.err.println("Hello, qrcode!");
+//		if(StringUtils.isBlank(url)){
+//			return new ByteArrayOutputStream();
+//		}
+//		return new ZxingQRcoder().encode(url);
+//	}
 
 	@RequestMapping("/ss")
 	String ssUpdate(Map<String, Object> map) {

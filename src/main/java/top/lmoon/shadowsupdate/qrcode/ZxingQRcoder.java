@@ -75,18 +75,16 @@ public class ZxingQRcoder implements QRcoder {
 		return bitMatrix;
 	}
 	
-	public OutputStream encode(String content){
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	public void encode(String content, OutputStream os){
 		try {
 			String format = "png";// 图像类型
 			BitMatrix bitMatrix = getBitMatrix(content);// 生成矩阵			
-			MatrixToImageWriter.writeToStream(bitMatrix, format, baos);		
+			MatrixToImageWriter.writeToStream(bitMatrix, format, os);		
 //			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("", e);
 		}
-		return baos;
 	}
 
 	/*
