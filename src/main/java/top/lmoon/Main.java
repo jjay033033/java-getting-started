@@ -16,8 +16,6 @@
 
 package top.lmoon;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -26,11 +24,11 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -48,13 +46,13 @@ import top.lmoon.heroku.dao.VipVideoDAO;
 import top.lmoon.mail.MailUtil;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
-import top.lmoon.shadowsupdate.qrcode.ZxingQRcoder;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
 import top.lmoon.util.ExceptionUtil;
 import top.lmoon.vipvideo.vo.VipVideoVO;
 
 @Controller
 @SpringBootApplication
+@ServletComponentScan
 public class Main {
 
 	@Value("${spring.datasource.url}")
