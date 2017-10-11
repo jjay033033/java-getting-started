@@ -5,12 +5,18 @@
 <head>
 <title>Hello LMoon!</title>
 <script src="../js/jquery-1.7.2.min.js"></script>
+<style type="text/css">
+div .list{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+</style>
 </head>
 <body>
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div th:if="${not #lists.isEmpty(list)}">
-		<div th:each="entry:${list}">
-			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a><input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >
+		<div class="list" th:each="entry:${list}">
+			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >
 		</div>
 	</div>
 <!-- 	<div>
@@ -24,7 +30,7 @@
 	/* function showImg(url){
 		document.getElementById('qrimg').src = "/s/qrcode?url="+url;		
 	}	 */
-	function showResult(dom, imgsrc, text) {
+	function showResult(dom, imgsrc) {
         dom.innerHTML = '<div id="ss_plugin_mask" style="margin:0;font-family:\'Source Sans Pro\', \'Microsoft Yahei\',sans-serif,Arial; font-size:14px;color:black;position:fixed;top:0;right:0;bottom:0;left:0;background:#f1f1f1;background:rgba(0,0,0,0.39);z-index:99999"></div>' + 
                         '<div style="margin:0;font-family:\'Source Sans Pro\', \'Microsoft Yahei\',sans-serif,Arial; font-size:14px;color:black;position:fixed;top:80px;left:50%;margin-left:-121px;padding:10px 10px;width:260px;border:1px solid #d9d9d9;background:#fff;text-align:center;z-index:100000;">' + 
                             '<a id="ss_plugin_close" href="javascript:;" style="text-decoration:none;color:#666;position:absolute;top:5px;right:10px;display:block;width:20px;height:20px;font-size:20px;cursor:pointer">×</a>' + 
@@ -57,7 +63,7 @@
 
 	function showQrcode(url) {
 	    var qrcode_dom = getMaskContainer();
-	    showResult(qrcode_dom, "/s/qrcode?url="+url, qrcode_text);	    
+	    showResult(qrcode_dom, "/s/qrcode?url="+url);	    
 	}
 	</script>
 </body>
