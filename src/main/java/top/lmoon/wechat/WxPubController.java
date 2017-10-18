@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WxPubController {
     //此处TOKEN即我们刚刚所填的token
-    private static final String TOKEN = "good";
+    private static final String TOKEN = "lmoonmusic";
  
     /**
      * 接收并校验四个请求参数
