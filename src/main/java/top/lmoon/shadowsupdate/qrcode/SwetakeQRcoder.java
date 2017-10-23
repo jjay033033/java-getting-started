@@ -21,6 +21,7 @@ public class SwetakeQRcoder implements QRcoder{
 	
 	private static final Logger logger = Logger.getLogger(SwetakeQRcoder.class);
 	
+	@Override
 	public void encode(String content,String filepath){
 		encode(content, 10,filepath);
 	}
@@ -86,6 +87,7 @@ public class SwetakeQRcoder implements QRcoder{
 		}
 	}
 	
+	@Override
 	public String decode(String urlStr) {
 		BufferedImage bi = null;
 		QRCodeDecoder decoder = new QRCodeDecoder();  

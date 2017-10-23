@@ -9,7 +9,7 @@ import top.lmoon.shadowsupdate.vo.ConfVO;
 
 public class ConfListUtil {
 
-	public static Map<String, Object> CompareList(List<ConfVO> oldList, List<ConfVO> newList) {
+	public static Map<String, Object> compareList(List<ConfVO> oldList, List<ConfVO> newList) {
 		// List<ConfVo> list = new ArrayList<ConfVo>();
 		boolean isChange = false;
 		if (newList == null || newList.isEmpty()) {

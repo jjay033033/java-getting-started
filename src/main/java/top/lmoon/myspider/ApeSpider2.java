@@ -11,6 +11,7 @@ public class ApeSpider2 implements PageProcessor {
 
 	private Site site = Site.me().setRetryTimes(3).setSleepTime(1000);
 
+	@Override
 	public void process(Page page) {
 		page.addTargetRequests(page.getHtml().links().regex("(http://www\\.51ape\\.com/.*)").all());
 		String remark = page.getHtml().xpath("//title/tidyText()").toString();
@@ -54,6 +55,7 @@ public class ApeSpider2 implements PageProcessor {
 		}
 	}
 
+	@Override
 	public Site getSite() {
 		return site;
 	}

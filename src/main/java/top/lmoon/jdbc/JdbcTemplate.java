@@ -257,6 +257,7 @@ public class JdbcTemplate {
 
 		ResultSetExtractor<List<Object[]>> rse = new ResultSetExtractor<List<Object[]>>() {
 
+			@Override
 			public List<Object[]> extract(ResultSet rs) throws SQLException {
 
 				ResultSetMetaData rsmd = rs.getMetaData();
@@ -291,6 +292,7 @@ public class JdbcTemplate {
 
 		ResultSetExtractor<List<Object>> rse = new ResultSetExtractor<List<Object>>() {
 
+			@Override
 			public List<Object> extract(ResultSet rs) throws SQLException {
 
 				List<Object> dataList = new ArrayList<Object>();
@@ -316,6 +318,7 @@ public class JdbcTemplate {
 
 		ResultSetExtractor<List<Integer>> rse = new ResultSetExtractor<List<Integer>>() {
 
+			@Override
 			public List<Integer> extract(ResultSet rs) throws SQLException {
 
 				List<Integer> dataList = new ArrayList<Integer>();
@@ -342,6 +345,7 @@ public class JdbcTemplate {
 
 		ResultSetExtractor<List<Map<String, Object>>> rse = new ResultSetExtractor<List<Map<String, Object>>>() {
 
+			@Override
 			public List<Map<String, Object>> extract(ResultSet rs) throws SQLException {
 
 				ResultSetMetaData rsmd = rs.getMetaData();

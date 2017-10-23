@@ -4,7 +4,7 @@ public class ConfVO {
 	
 	private String server;
 	
-	private int server_port;
+	private int serverPort;
 	
 	private String password;
 	
@@ -20,12 +20,12 @@ public class ConfVO {
 		this.server = server;
 	}
 
-	public int getServer_port() {
-		return server_port;
+	public int getServerPort() {
+		return serverPort;
 	}
 
-	public void setServer_port(int server_port) {
-		this.server_port = server_port;
+	public void setServerPort(int serverPort) {
+		this.serverPort = serverPort;
 	}
 
 	public String getPassword() {
@@ -54,7 +54,7 @@ public class ConfVO {
 
 	@Override
 	public String toString() {
-		return "ConfVo [server=" + server + ", server_port=" + server_port + ", password=" + password + ", method="
+		return "ConfVo [server=" + server + ", server_port=" + serverPort + ", password=" + password + ", method="
 				+ method + ", remarks=" + remarks + "]";
 	}
 
@@ -66,41 +66,53 @@ public class ConfVO {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((remarks == null) ? 0 : remarks.hashCode());
 		result = prime * result + ((server == null) ? 0 : server.hashCode());
-		result = prime * result + server_port;
+		result = prime * result + serverPort;
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		ConfVO other = (ConfVO) obj;
 		if (method == null) {
-			if (other.method != null)
+			if (other.method != null) {
 				return false;
-		} else if (!method.equals(other.method))
+			}
+		} else if (!method.equals(other.method)) {
 			return false;
+		}
 		if (password == null) {
-			if (other.password != null)
+			if (other.password != null) {
 				return false;
-		} else if (!password.equals(other.password))
+			}
+		} else if (!password.equals(other.password)) {
 			return false;
+		}
 		if (remarks == null) {
-			if (other.remarks != null)
+			if (other.remarks != null) {
 				return false;
-		} else if (!remarks.equals(other.remarks))
+			}
+		} else if (!remarks.equals(other.remarks)) {
 			return false;
+		}
 		if (server == null) {
-			if (other.server != null)
+			if (other.server != null) {
 				return false;
-		} else if (!server.equals(other.server))
+			}
+		} else if (!server.equals(other.server)) {
 			return false;
-		if (server_port != other.server_port)
+		}
+		if (serverPort != other.serverPort) {
 			return false;
+		}
 		return true;
 	}
 	
