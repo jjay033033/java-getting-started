@@ -62,7 +62,7 @@ public class ShadowsUpdate {
 					map.put("url", "ss://"+Base64Coder.encodeBase64(QRcodeUtil.getConfStrFromVO(vo)));
 					
 					map.put("server", vo.getServer());
-					if(!hasFirst&&vo.getServer().contains("jp")){
+					if(!hasFirst&&(vo.getServer().contains("jp")||vo.getServer().contains("isxa"))){
 						map.put("id", "ids");
 						hasFirst = true;
 					}else{
