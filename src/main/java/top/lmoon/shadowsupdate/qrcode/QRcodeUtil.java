@@ -41,7 +41,7 @@ public class QRcodeUtil {
 	}
 	
 	public static String getConfStrFromVO(ConfVO vo){
-		return vo.getMethod()+":"+vo.getPassword()+"@"+vo.getServer()+":"+vo.getServer_port();
+		return vo.getMethod()+":"+vo.getPassword()+"@"+vo.getServer()+":"+vo.getServerPort();
 	}
 
 }
