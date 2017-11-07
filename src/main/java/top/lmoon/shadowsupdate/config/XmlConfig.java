@@ -46,7 +46,7 @@ public class XmlConfig {
 	
 	private void initServerMap(){
 		try {
-			this.serverMap = null;
+			this.serverMap.clear();
 			Map servers = (Map) map.get("servers");
 			if (servers == null || servers.isEmpty()) {
 				throw new Exception("没有servers项！");
