@@ -8,6 +8,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import top.lmoon.util.ExceptionUtil;
 import top.lmoon.util.ThreadPool;
 
 import java.util.Date;
@@ -38,6 +39,10 @@ public class MailUtil {
 
 	public static void main(String[] args) throws Exception {
 		sendEmail(receiveMailAccount, "乱月", "客户", "神之信", "你好，哈哈哈。");
+	}
+	
+	public static void asyncSendErrorEmail(Exception e){
+		asyncSendErrorEmail(ExceptionUtil.getExceptionMessage(e));
 	}
 	
 	public static void asyncSendErrorEmail(String content){

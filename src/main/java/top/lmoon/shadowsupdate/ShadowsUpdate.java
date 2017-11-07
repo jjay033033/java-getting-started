@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import top.lmoon.mail.MailUtil;
 import top.lmoon.shadowsupdate.config.ConfigList;
 import top.lmoon.shadowsupdate.config.ConfigListFactory;
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
@@ -109,6 +110,7 @@ public class ShadowsUpdate {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					logger.error("",e);
+					MailUtil.asyncSendErrorEmail(e);
 				}
 			}
 		}
