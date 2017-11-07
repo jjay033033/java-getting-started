@@ -20,6 +20,7 @@ public class ConfigListFactory {
 	}
 	
 	private void init(){
+		XmlConfig.resetInstance();
 		Map<String,ServerConfigVO> map = XmlConfig.getInstance().getServerConfigMap();
 		int i = 0;
 		for(Iterator<String> it = map.keySet().iterator();it.hasNext();){
@@ -59,6 +60,10 @@ public class ConfigListFactory {
 	
 	public Map<String,ConfigList> getConfigListMap(){
 		return configMap;
+	}
+	
+	public static void resetInstance(){
+		configListFactory = null;
 	}
 
 }

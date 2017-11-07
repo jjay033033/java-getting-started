@@ -45,6 +45,7 @@ import top.lmoon.heroku.dao.ConfsDAO;
 import top.lmoon.heroku.dao.VipVideoDAO;
 import top.lmoon.mail.MailUtil;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
+import top.lmoon.shadowsupdate.config.ConfigListFactory;
 import top.lmoon.shadowsupdate.config.XmlConfig;
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
@@ -233,7 +234,7 @@ public class Main {
 	String updateConf(@ModelAttribute(value = "vo") ConfWebVO vo) {
 		try {
 			confsDAO.updateConf(vo);
-			XmlConfig.resetInstance();
+			ConfigListFactory.resetInstance();
 			return "conf";
 		} catch (Exception e) {
 			// map.put("message", e.getMessage());
