@@ -17,13 +17,13 @@ div .list{
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
-			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" ><a href="javascript:showDesc(this);">﹀</a>
-			<div hidden="true">
-				server:<p th:text="${entry.server}"></p>
-				serverPort:<p th:text="${entry.serverPort}"></p>
-				method:<p th:text="${entry.method}"></p>
-				password:<p th:text="${entry.password}"></p>
-				remarks:<p th:text="${entry.remarks}"></p>
+			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" ><a href="javascript:void();" onclick="javascript:showDesc(this);">﹀</a>
+			<div style="display: none;">
+				server:<b th:text="${entry.server}"></b>
+				serverPort:<b th:text="${entry.serverPort}"></b>
+				method:<b th:text="${entry.method}"></b>
+				password:<b th:text="${entry.password}"></b>
+				remarks:<b th:text="${entry.remarks}"></b>
 			</div>
 		</div>
 	</div>
@@ -37,14 +37,13 @@ div .list{
 	}
 
 	function showDesc(e){
+		var ne=e.nextElementSibling;
 		if(e.text=="﹀"){
 			e.text = "︿";
-			var ne=e.nextSbiling;
-			ne.hidden = "false";
+			ne.style.display="inline";
 		}else if(e.text=="︿"){
 			e.text = "﹀";
-			var ne=e.nextSbiling;
-			ne.hidden = "true";
+			ne.style.display="none";
 		}
 		
 	}
