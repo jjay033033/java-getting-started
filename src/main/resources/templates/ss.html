@@ -38,11 +38,11 @@ div .list{
 
 	function showDesc(e){
 		var ne=e.nextElementSibling;
-		if(e.text=="﹀"){
-			e.text = "︿";
+		if(e.value=="﹀"){
+			e.value = "︿";
 			ne.style.display="block";
-		}else if(e.text=="︿"){
-			e.text = "﹀";
+		}else if(e.value=="︿"){
+			e.value = "﹀";
 			ne.style.display="none";
 		}
 		
