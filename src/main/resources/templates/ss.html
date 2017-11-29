@@ -17,13 +17,13 @@ div .list{
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
-			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >&nbsp;&nbsp;<input type="button" onclick="javascript:showDesc(this);" value="﹀">
-			<div style="display: none;">
-				server:<b th:text="${entry.server}"></b>
-				serverPort:<b th:text="${entry.serverPort}"></b>
-				method:<b th:text="${entry.method}"></b>
-				password:<b th:text="${entry.password}"></b>
-				remarks:<b th:text="${entry.remarks}"></b>
+			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >&nbsp;&nbsp;<input type="button" onclick="javascript:showDesc(this);" value="﹀" style="font-family: serif;">
+			<div style="display: none;font-family: serif;">
+				server:<b th:text="${entry.server}"></b><br>
+				serverPort:<b th:text="${entry.serverPort}"></b><br>
+				method:<b th:text="${entry.method}"></b><br>
+				password:<b th:text="${entry.password}"></b><br>
+				remarks:<b th:text="${entry.remarks}"></b><br>
 			</div>
 		</div>
 	</div>
