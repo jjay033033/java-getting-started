@@ -17,7 +17,14 @@ div .list{
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
-			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >
+			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" ><a href="javascript:showDesc(this);">﹀</a>
+			<div hidden="true">
+				server:<p th:text="${entry.server}"></p>
+				serverPort:<p th:text="${entry.serverPort}"></p>
+				method:<p th:text="${entry.method}"></p>
+				password:<p th:text="${entry.password}"></p>
+				remarks:<p th:text="${entry.remarks}"></p>
+			</div>
 		</div>
 	</div>
 <!-- 	<div>
@@ -27,6 +34,19 @@ div .list{
 	var abc = document.getElementById('ids');
 	if(abc && navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){
 		abc.click();
+	}
+
+	function showDesc(e){
+		if(e.text=="﹀"){
+			e.text = "︿";
+			var ne=e.nextSbiling;
+			ne.hidden = "false";
+		}else if(e.text=="︿"){
+			e.text = "﹀";
+			var ne=e.nextSbiling;
+			ne.hidden = "true";
+		}
+		
 	}
 	/* function showImg(url){
 		document.getElementById('qrimg').src = "/s/qrcode?url="+url;		
