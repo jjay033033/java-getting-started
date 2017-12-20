@@ -19,20 +19,15 @@ public class SongIdFactory {
 
 	// private static AtomicInteger counter = new AtomicInteger(1);
 
-	private static SongIdFactory instance;
-
 	private SongIdFactory() {
 	}
 
 	public static SongIdFactory getInstance() {
-		if (instance == null) {
-			synchronized (SongIdFactory.class) {
-				if (instance == null) {
-					instance = new SongIdFactory();
-				}
-			}
-		}
-		return instance;
+		return SongIdFactoryHolder.SONG_ID_FACTORY;
+	}
+	
+	private static class SongIdFactoryHolder{
+		private static final SongIdFactory SONG_ID_FACTORY = new SongIdFactory();
 	}
 
 	public String getSongId() {
@@ -41,7 +36,7 @@ public class SongIdFactory {
 
 	public int getSongIdForSinger(int singerId) {
 		int id = 1;
-		synchronized (map) {
+		synchronized (this) {
 			Integer preId = map.get(singerId);
 			if(preId!=null){
 				id = preId+1;

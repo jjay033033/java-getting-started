@@ -4,7 +4,6 @@
 package top.lmoon.myspider.apefile;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +38,9 @@ public class FileReader {
 	public static List<ApeInfoVO> readAllFiles() {
 		List<ApeInfoVO> list = new ArrayList<ApeInfoVO>();
 		String[] fileNames = DIRECTORY_FILE.list();
+		if(fileNames==null){
+			return list;
+		}
 		for (String fileName : fileNames) {
 			File file = new File(FileName.FILE_PATH + fileName);
 			try {

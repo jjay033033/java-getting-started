@@ -96,7 +96,7 @@ public class TextConfigListImpl implements ConfigList {
 				content = content.substring(encryptionEndIdx);
 			}
 		} catch (Exception e) {
-			throw new Exception(e);
+			throw new Exception("content:"+content,e);
 		}
 
 		return list;

@@ -82,7 +82,7 @@ public class PicConfigListImpl implements ConfigList{
 				content = content.substring(serverEnd);
 			}
 		}catch(Exception e){
-			throw new Exception(e);
+			throw new Exception("content:"+content,e);
 		}
 		return list;
 	}
