@@ -15,6 +15,7 @@ div .list{
 </head>
 <body>
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
+	<div><a href="alipay://abc">testtttt...</a></div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
 			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >&nbsp;&nbsp;<input type="button" onclick="javascript:showDesc(this);" value="﹀" style="font-family: serif;">
