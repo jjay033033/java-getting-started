@@ -38,7 +38,12 @@ div .list{
 	} */
 	!function(){
 		if(navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){
-			window.clipboardData.setData("Text","快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3");
+			var clipboardData = window.clipboardData; //for IE  
+	        if (!clipboardData) { // for chrome  
+	            clipboardData = e.originalEvent.clipboardData;  
+	        }  
+	        clipboardData.setData('Text', "快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3"); 
+			//window.clipboardData.setData("Text","快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3");
 			document.getElementById("goalipay").click();
 		}
 	}();
