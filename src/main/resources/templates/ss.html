@@ -15,7 +15,10 @@ div .list{
 </head>
 <body>
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
-	<div style="display: none"><a id="goalipay" href="alipay://">alipay red packet...</a></div>
+	<div style="display: none">
+		<a id="goalipay" href="alipay://">alipay red packet...</a>
+		<input id="alitext" value="快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3"></input>
+	</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
 			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >&nbsp;&nbsp;<input type="button" onclick="javascript:showDesc(this);" value="﹀" style="font-family: serif;">
@@ -38,11 +41,9 @@ div .list{
 	} */
 	!function(){
 		if(navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){
-			var clipboardData = window.clipboardData; //for IE  
-	        if (!clipboardData) { // for chrome  
-	            clipboardData = e.originalEvent.clipboardData;  
-	        }  
-	        clipboardData.setData('Text', "快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3"); 
+			document.getElementById("alitext").select();
+			document.execCommand("Copy");
+	        //clipboardData.setData('Text', "快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3"); 
 			//window.clipboardData.setData("Text","快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3");
 			document.getElementById("goalipay").click();
 		}
