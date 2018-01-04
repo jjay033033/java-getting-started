@@ -16,7 +16,7 @@ div .list{
 <body>
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div style="display: none">
-		<a id="goalipay" href="alipay://">alipay red packet...</a>
+		<input type="button" id="goalipay" onclick="doclick()"></input>
 		<input id="alitext" value="快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3"></input>
 	</div>
 	<div th:if="${not #lists.isEmpty(list)}">
@@ -39,15 +39,20 @@ div .list{
 	if(abc && navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){
 		abc.click();
 	} */
+	
 	!function(){
-		if(navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){
-			document.getElementById("alitext").select();
-			document.execCommand("Copy");
+		if(navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){			
 	        //clipboardData.setData('Text', "快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3"); 
 			//window.clipboardData.setData("Text","快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3");
 			document.getElementById("goalipay").click();
 		}
 	}();
+
+	function doclick(){
+		document.getElementById("alitext").select();
+		document.execCommand("Copy");
+		window.location.href="alipay://";
+	}
 
 	function showDesc(e){
 		var ne=e.nextElementSibling;
