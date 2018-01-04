@@ -6,6 +6,7 @@
 <title>Hello LMoon!</title>
 <meta name="viewport" content="width=device-width,inital-scale=1.0,minimum-scale=0.5,maximum-scale=2.0">
 <script src="../js/jquery-1.7.2.min.js"></script>
+<script src="../js/clipboard.min.js"></script>
 <style type="text/css">
 div .list{
     margin-top: 5px;
@@ -16,7 +17,8 @@ div .list{
 <body>
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div>
-		<input type="button" id="goalipay" onclick="doclick()" value="点我有惊喜哦~"></input>
+		<!-- <input type="button" id="goalipay" onclick="doclick()" value="点我有惊喜哦~"></input> -->
+		<button class="btn" data-clipboard-action="copy" data-clipboard-target="#alitext" id="goalipay">点我有惊喜哦~</button>
 	</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
@@ -48,11 +50,19 @@ div .list{
 		}
 	}();
 
-	function doclick(){
+	/* function doclick(){
 		document.getElementById("alitext").select();
 		document.execCommand("Copy");
 		window.location.href="alipay://";
-	}
+	} */
+
+	$(document).ready(function(){         
+        var clipboard = new Clipboard('#goalipay');      
+        clipboard.on('success', function(e) {            
+            e.clearSelection();   
+            window.location.href="alipay://";   
+        });      
+    });    
 
 	function showDesc(e){
 		var ne=e.nextElementSibling;
