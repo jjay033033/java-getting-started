@@ -17,7 +17,7 @@ div .list{
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
 	<div>
 		<input type="button" id="goalipay" onclick="doclick()" value="点我有惊喜哦~"></input>
-		<input style="display: none" id="alitext" value="快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3"></input>
+		<textarea style="display: none" id="alitext">快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3</textarea>
 	</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
@@ -40,11 +40,11 @@ div .list{
 		abc.click();
 	} */
 	
-	/* !function(){
+	!function(){
 		if(navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){			
 	        document.getElementById("goalipay").click();
 		}
-	}(); */
+	}();
 
 	function doclick(){
 		document.getElementById("alitext").select();
