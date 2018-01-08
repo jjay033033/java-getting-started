@@ -59,7 +59,8 @@ div .list{
 	$(document).ready(function(){         
         var clipboard = new Clipboard('#goalipay');      
         clipboard.on('success', function(e) {       
-            console.log('success');     
+            console.log('success');  
+            alert('success');   
             e.clearSelection();   
             window.location.href="alipay://";   
         });      
