@@ -60,10 +60,10 @@ div .list{
         var clipboard = new Clipboard('#goalipay');      
         clipboard.on('success', function(e) {       
             console.log('success');  
-            alert('success');   
+            //alert('success');   
             e.clearSelection();   
-            //window.location.href="alipay://";   
-            window.location.href="http://www.baidu.com";   
+            window.location.href="alipay://";   
+            //window.location.href="http://www.baidu.com";   
         });      
     });    
 
