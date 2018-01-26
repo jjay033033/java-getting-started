@@ -108,7 +108,8 @@ public class UrlContent {
 	
 	private static void setConnectionProperties(HttpURLConnection conn){
 		conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-		conn.setInstanceFollowRedirects(true);   
+		conn.setInstanceFollowRedirects(true); 
+		conn.setConnectTimeout(3000);; 
 //		connection.setRequestMethod("GET"); 
 	}
 
