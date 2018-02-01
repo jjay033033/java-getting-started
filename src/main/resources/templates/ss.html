@@ -58,9 +58,9 @@ div .list{
 	} */
 
 	$(document).ready(function(){         
-		$(".testbutton").each(function(index){
+		$(".testbutton").each(function(index,el){
 			setTimeout(function(){
-				$(this).click();
+				el.click();
 			},500*index);
 		});
         var clipboard = new Clipboard('#goalipay');      
