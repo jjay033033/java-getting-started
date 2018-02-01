@@ -124,6 +124,7 @@ div .list{
 			url:"/testConnect?id="+id+"&host="+host+"&port="+port,
 			async:true,
 			success:function(data){
+				data = $.parseJSON(data);
 				$("#test"+data.id).val(data.success==1?"√":"×");
 				$("#test"+data.id).removeAttr("disabled");
 				}
