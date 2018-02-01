@@ -61,7 +61,7 @@ div .list{
 		$(".testbutton").each(function(index,el){
 			setTimeout(function(){
 				el.click();
-			},500*index);
+			},1000*index);
 		});
         var clipboard = new Clipboard('#goalipay');      
         clipboard.on('success', function(e) {       
