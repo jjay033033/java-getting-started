@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -49,6 +50,7 @@ import top.lmoon.shadowsupdate.config.ConfigListFactory;
 import top.lmoon.shadowsupdate.config.XmlConfig;
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
 import top.lmoon.shadowsupdate.vo.ConfWebVO;
+import top.lmoon.util.CommonUtil;
 import top.lmoon.util.ExceptionUtil;
 import top.lmoon.vipvideo.vo.VipVideoVO;
 
@@ -239,6 +241,23 @@ public class Main {
 		} catch (Exception e) {
 			// map.put("message", e.getMessage());
 			vo.setMessage(e.getMessage());
+			MailUtil.asyncSendErrorEmail(e);
+			return "error";
+		}
+	}
+	
+	@RequestMapping("/testConnect")
+	@ResponseBody
+	String testConnect(String id,String host,Integer port) {
+		try {
+			System.err.println("testConnect!");
+			boolean connected = CommonUtil.isConnected(host, port);
+			Map map = new HashMap<>();
+			map.put("id", id);
+			map.put("success", connected?1:0);
+			return JSON.toJSONString(map);
+		} catch (Exception e) {
+			e.printStackTrace();
 			MailUtil.asyncSendErrorEmail(e);
 			return "error";
 		}
