@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width,inital-scale=1.0,minimum-scale=0.5,maximum-scale=2.0">
 <script src="../js/jquery-1.7.2.min.js"></script>
 <script src="../js/clipboard.min.js"></script>
+<script src="../js/portscanner.js"></script>
 <style type="text/css">
 div .list{
     margin-top: 5px;
@@ -120,6 +121,12 @@ div .list{
 	function testConnect(id,host,port) {
 		$("#test"+id).val("testing...");
 		$("#test"+id).attr("disabled","true");
+		var ps = new PortScanner();
+		ps.scanPort(function(host,port,result,id){
+			$("#test"+id).val(result==1?"√":"×");
+			$("#test"+id).removeAttr("disabled");
+			},host,port,1000,id);
+		/* 
 		$.ajax({
 			url:"/testConnect?id="+id+"&host="+host+"&port="+port,
 			async:true,
@@ -128,7 +135,7 @@ div .list{
 				$("#test"+data.id).val(data.success==1?"√":"×");
 				$("#test"+data.id).removeAttr("disabled");
 				}
-			});	    
+			});	   */  
 	}
 	
 	</script>
