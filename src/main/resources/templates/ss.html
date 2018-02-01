@@ -118,8 +118,8 @@ div .list{
 	}
 
 	function testConnect(id,host,port) {
-		$("#test"+data.id).val("testing...");
-		$("#test"+data.id).attr("disabled","true");
+		$("#test"+id).val("testing...");
+		$("#test"+id).attr("disabled","true");
 		$.ajax({
 			url:"/testConnect?id="+id+"&host="+host+"&port="+port,
 			async:true,
