@@ -22,7 +22,7 @@ div .list{
 	</div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
-			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="测试连接" th:attr="id='test'+${entry.id}" th:attr="onclick='javascript:testConnect(\''+${entry.id}+'\',\''+${entry.server}+'\',\''+${entry.serverPort}+'\');'" >&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >&nbsp;&nbsp;<input type="button" onclick="javascript:showDesc(this);" value="﹀" style="font-family: serif;">
+			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="测试连接" th:attr="id='test'+${entry.id};onclick='javascript:testConnect(\''+${entry.id}+'\',\''+${entry.server}+'\',\''+${entry.serverPort}+'\');'" >&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >&nbsp;&nbsp;<input type="button" onclick="javascript:showDesc(this);" value="﹀" style="font-family: serif;">
 			<div style="display: none;font-family: serif;">
 				server:<b th:text="${entry.server}"></b><br>
 				serverPort:<b th:text="${entry.serverPort}"></b><br>
