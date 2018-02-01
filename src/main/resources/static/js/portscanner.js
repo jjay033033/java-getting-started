@@ -1,5 +1,5 @@
 function PortScanner (){
-	this.scanPort = function(callback, target, port, timeout,data) {
+	this.scan = function(callback, target, timeout,data){
 		var timeout = (timeout == null) ? 100 : timeout;
 		var img = new Image();
 		img.onerror = function() {
@@ -7,23 +7,20 @@ function PortScanner (){
 				return;
 			}
 			img = undefined;
-			callback(target, port, 1,data);
+			callback(data,1);
 		};
 		img.onload = img.onerror;
-		img.src = 'http://' + target + ':' + port;
+		img.src = 'http://' + target;
 
 		setTimeout(function() {
 			if (!img) {
 				return;
 			}
 			img = undefined;
-			callback(target, port, 0,data);
+			callback(data,0);
 		}, timeout);
 	};
-
-	this.scanTarget = function(callback, target, ports, timeout,data) {
-		for (index = 0; index < ports.length; index++) {
-			AttackAPI.PortScanner.scanPort(callback, target, ports[index], timeout,data);
-		}
+	this.scanPort = function(callback, host, port, timeout,data) {
+		this.scan(callback,host + ':' + port, timeout,data)
 	};
 };
