@@ -17,10 +17,10 @@ div .list{
 </head>
 <body>
 	<div th:if="${#lists.isEmpty(list)}">Hello LMoon!Failed to get ss account...</div>
-	<div>
-		<!-- <input type="button" id="goalipay" onclick="doclick()" value="点我有惊喜哦~"></input> -->
+	<!-- <div>
+		<input type="button" id="goalipay" onclick="doclick()" value="点我有惊喜哦~"></input>
 		<button class="btn" data-clipboard-action="copy" data-clipboard-target="#alitext" id="goalipay">点我有惊喜哦~</button>
-	</div>
+	</div> -->
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="list" th:each="entry:${list}">
 			<a th:attr="id=${entry.id}" th:href="${entry.url}" th:text="${entry.server}" >Hello LMoon!</a>&nbsp;&nbsp;<input type="button" value="测试连接" class="testbutton" th:attr="id='test'+${entry.id},onclick='javascript:testConnect(\''+${entry.id}+'\',\''+${entry.server}+'\',\''+${entry.serverPort}+'\');'" >&nbsp;&nbsp;<input type="button" value="二维码" th:attr="onclick='javascript:showQrcode(\''+${entry.url}+'\');'" >&nbsp;&nbsp;<input type="button" onclick="javascript:showDesc(this);" value="﹀" style="font-family: serif;">
@@ -33,9 +33,9 @@ div .list{
 			</div>
 		</div>
 	</div>
-	<div>
+	<!-- <div>
 	<input style="width:5px;" id="alitext" value="快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！guwR9z62F3"></input>
-	</div>
+	</div> -->
 <!-- 	<div>
 		<img id="qrimg" src="" />
 	</div> -->
@@ -45,11 +45,11 @@ div .list{
 		abc.click();
 	} */
 	
-	!function(){
+	/* !function(){
 		if(navigator.userAgent.match('iPhone|iPod|Android|ios|SymbianOS')){			
 	        document.getElementById("goalipay").click();
 		}
-	}();
+	}(); */
 
 	/* function doclick(){
 		document.getElementById("alitext").select();
@@ -63,14 +63,14 @@ div .list{
 				el.click();
 			},1000*index);
 		});
-        var clipboard = new Clipboard('#goalipay');      
+       /*  var clipboard = new Clipboard('#goalipay');      
         clipboard.on('success', function(e) {       
             console.log('success');  
             //alert('success');   
             e.clearSelection();   
             window.location.href="https://ds.alipay.com/?from=mobileweb";   
             //window.location.href="http://www.baidu.com";   
-        });      
+        }); */      
     });    
 
 	function showDesc(e){
