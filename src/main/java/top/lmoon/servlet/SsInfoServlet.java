@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import top.lmoon.shadowsupdate.ShadowsUpdate;
 
@@ -30,8 +31,9 @@ public class SsInfoServlet extends HttpServlet {
 		PrintWriter writer = resp.getWriter();
 		if (method != null && "getss".equals(method)) {
 			List<Map<String, Object>> getss = ShadowsUpdate.getss();
-			JSONObject json = JSONObject.fromObject(getss);
-			String result = json.toString();			
+			JSONArray ja = JSONArray.fromObject(getss);
+//			JSONObject json = JSONObject.fromObject(getss);
+			String result = ja.toString();			
 			writer.write(result);
 			return;
 		}
