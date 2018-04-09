@@ -51,7 +51,7 @@ public class ShadowsUpdate {
 				ssList = getssFromServer();
 			}
 		};
-		executorService.scheduleAtFixedRate(r, 0, 5, TimeUnit.MINUTES);
+		executorService.scheduleAtFixedRate(r, 0, 1, TimeUnit.MINUTES);
 	}
 	
 	public static List<Map<String,Object>> getss() {
