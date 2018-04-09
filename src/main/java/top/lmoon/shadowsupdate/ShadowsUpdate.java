@@ -36,15 +36,6 @@ public class ShadowsUpdate {
 
 	private static final Logger logger = Logger.getLogger(ShadowsUpdate.class);
 
-	private static final String HOME_PATH = "res/";
-
-	private static final String PATH_NAME = HOME_PATH + "gui-config.json";
-	private static final String EXE_NAME = "Shadowsocks.exe";
-	private static final String EXE_PATH = HOME_PATH + EXE_NAME;
-	private static final String QRCODE_PATH = HOME_PATH + "QRCode/";
-
-	private static final String SLEEP_TIME = "sleepTime";
-
 	public static List<Map<String,Object>> getss() {		
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
