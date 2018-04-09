@@ -71,6 +71,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			SpringApplication.run(Main.class, args);
+			MailUtil.asyncSendErrorEmail("进入main了啊啊啊");
 		} catch (Exception e) {
 			e.printStackTrace();			
 			MailUtil.asyncSendErrorEmail(e);
