@@ -10,6 +10,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
@@ -35,8 +38,30 @@ public class ShadowsUpdate {
 	// }
 
 	private static final Logger logger = Logger.getLogger(ShadowsUpdate.class);
+	
+	private static List<Map<String, Object>> ssList = null;
+	
+	private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+	
+	public static void start(){
+		Runnable r = new Runnable() {
+			
+			@Override
+			public void run() {
+				ssList = getssFromServer();
+			}
+		};
+		executorService.scheduleAtFixedRate(r, 0, 5, TimeUnit.MINUTES);
+	}
+	
+	public static List<Map<String,Object>> getss() {
+		if(ssList==null){
+			ssList = getssFromServer();
+		}
+		return ssList;
+	}
 
-	public static List<Map<String,Object>> getss() {		
+	private static List<Map<String,Object>> getssFromServer() {		
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
 		try {	
