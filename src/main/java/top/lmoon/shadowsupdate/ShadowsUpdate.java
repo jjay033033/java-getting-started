@@ -38,78 +38,89 @@ public class ShadowsUpdate {
 	// }
 
 	private static final Logger logger = Logger.getLogger(ShadowsUpdate.class);
-	
+
 	private static List<Map<String, Object>> ssList = null;
-	
+
 	private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-	
-	public static void start(){
+
+	private static long lastTime = 0;
+
+	private static final long DELAY_TIME_SECONDS = 60L;
+
+	private static final long LIMIT_TIME_MILLIS = 2L * DELAY_TIME_SECONDS * 1000;
+
+	public static void start() {
 		Runnable r = new Runnable() {
-			
+
 			@Override
 			public void run() {
-				ssList = getssFromServer();
+				lastTime = System.currentTimeMillis();
+				ssList = getssFromServer();				
 			}
 		};
-		executorService.scheduleAtFixedRate(r, 0, 1, TimeUnit.MINUTES);
+
+		executorService.scheduleAtFixedRate(r, 0, DELAY_TIME_SECONDS, TimeUnit.SECONDS);
 	}
-	
-	public static List<Map<String,Object>> getss() {
-		if(ssList==null){
+
+	public static List<Map<String, Object>> getss() {
+		if (ssList == null) {
 			ssList = getssFromServer();
+		} else if (System.currentTimeMillis() - lastTime > LIMIT_TIME_MILLIS) {
+			start();
+			MailUtil.asyncSendErrorEmail("获取ss线程挂了。。。已重新启动。。。");
 		}
 		return ssList;
 	}
 
-	private static List<Map<String,Object>> getssFromServer() {		
+	private static List<Map<String, Object>> getssFromServer() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		
-		try {	
+
+		try {
 			List<ConfVO> newList = getConfListFromServer();
-			if(newList==null||newList.isEmpty()){
+			if (newList == null || newList.isEmpty()) {
 				return list;
 			}
-//			ConfVO vo = newList.get(0);
+			// ConfVO vo = newList.get(0);
 			boolean hasFirst = false;
-			for(int i=0;i<newList.size();i++){
-//				if(vo.getServer().contains("jp")){
+			for (int i = 0; i < newList.size(); i++) {
+				// if(vo.getServer().contains("jp")){
 				ConfVO vo = newList.get(i);
-				try{
+				try {
 					Map<String, Object> map = new HashMap<String, Object>();
-					map.put("url", "ss://"+Base64Coder.encodeBase64(QRcodeUtil.getConfStrFromVO(vo)));
-					
+					map.put("url", "ss://" + Base64Coder.encodeBase64(QRcodeUtil.getConfStrFromVO(vo)));
+
 					map.put("server", vo.getServer());
 					map.put("method", vo.getMethod());
 					map.put("password", vo.getPassword());
 					map.put("remarks", vo.getRemarks());
 					map.put("serverPort", vo.getServerPort());
-					
-					if(!hasFirst&&(vo.getServer().contains("jp")||vo.getServer().contains("isxa"))){
+
+					if (!hasFirst && (vo.getServer().contains("jp") || vo.getServer().contains("isxa"))) {
 						map.put("id", "ids");
 						hasFirst = true;
-					}else{
-						map.put("id", "ids"+i);
+					} else {
+						map.put("id", "ids" + i);
 					}
 					list.add(map);
-				}catch (Exception e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 					logger.error("", e1);
-				}				
-//				}
+				}
+				// }
 			}
-			
-//			List<ConfVO> oldList = getConfListFromJson(FileUtil.readFile(PATH_NAME));
-//			Map<String, Object> compareMap = ConfListUtil.CompareList(oldList, newList);
 
-//			List<ConfVO> list = (List<ConfVO>) compareMap.get("confList");
-//			String content = buildContent(list);
-//			FileUtil.writeFile(content, PATH_NAME);
-//			QRcodeUtil.createQRCode(list, QRCODE_PATH);
+			// List<ConfVO> oldList = getConfListFromJson(FileUtil.readFile(PATH_NAME));
+			// Map<String, Object> compareMap = ConfListUtil.CompareList(oldList, newList);
+
+			// List<ConfVO> list = (List<ConfVO>) compareMap.get("confList");
+			// String content = buildContent(list);
+			// FileUtil.writeFile(content, PATH_NAME);
+			// QRcodeUtil.createQRCode(list, QRCODE_PATH);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("", e);
-			
+
 		}
 		return list;
 	}
@@ -130,7 +141,7 @@ public class ShadowsUpdate {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					logger.error("",e);
+					logger.error("", e);
 					MailUtil.asyncSendErrorEmail(e);
 				}
 			}
