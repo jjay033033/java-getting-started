@@ -3,6 +3,10 @@
  */
 package top.lmoon.mail;
 
+import java.io.IOException;
+import java.util.Date;
+import java.util.Properties;
+
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -11,19 +15,19 @@ import javax.mail.internet.MimeMessage;
 import top.lmoon.util.ExceptionUtil;
 import top.lmoon.util.ThreadPool;
 
-import java.util.Date;
-import java.util.Properties;
-
 /**
  * JavaMail 版本: 1.6.0 JDK 版本: JDK 1.7 以上（必须）
  */
 public class MailUtil {
 
+	private static String sendUserName = null;
+	private static String title = null;
+
 	// 发件人的 邮箱 和 密码（替换为自己的邮箱和密码）
 	// PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,
 	// 对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
-	private static String myEmailAccount = "1192743812@qq.com";
-	private static String myEmailPassword = "lznfobukymdpjhjj";
+	private static String myEmailAccount = null;
+	private static String myEmailPassword = null;
 	// Gzy^033033
 	// public static String myEmailAccount = "guozy@staff.tianya.cn";
 	// public static String myEmailPassword = "Gzy^033033";
@@ -31,43 +35,69 @@ public class MailUtil {
 	// 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
 	// 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
 	// public static String myEmailSMTPHost = "smtp.staff.tianya.cn";
-	private static String myEmailSMTPHost = "smtp.qq.com";
+	private static String myEmailSMTPHost = null;
 
 	// 收件人邮箱（替换为自己知道的有效邮箱）
-	 public static String receiveMailAccount = "1192743812@qq.com";
-//	private static String receiveMailAccount = "guozy@staff.tianya.cn";
+	public static String receiveMailAccount = null;
+	// private static String receiveMailAccount = "guozy@staff.tianya.cn";
+	
+	private static Properties pMail = new Properties();
+	private static Properties pUser = new Properties();
+
+	static {
+		try {
+			pMail.load(MailUtil.class.getResourceAsStream("/mail.properties"));
+			pUser.load(MailUtil.class.getResourceAsStream("/mail_user.properties"));
+			sendUserName = pUser.getProperty("sendUserName");
+			title = pUser.getProperty("title");
+			//私密账号密码，请在系统参数里添加
+			myEmailAccount = System.getenv("myEmailAccount");
+			myEmailPassword = System.getenv("myEmailPassword");
+			receiveMailAccount = pUser.getProperty("receiveMailAccount");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// System.load("mail.properties");
+		// System.load("mail_user.properties");
+	}
 
 	public static void main(String[] args) throws Exception {
+		System.out.println(receiveMailAccount);
 		sendEmail(receiveMailAccount, "乱月", "客户", "神之信", "你好，哈哈哈。");
 	}
-	
-	public static void asyncSendErrorEmail(Exception e){
+
+	public static void asyncSendErrorEmail(Exception e) {
 		asyncSendErrorEmail(ExceptionUtil.getExceptionMessage(e));
 	}
-	
-	public static void asyncSendErrorEmail(String content){
-		Runnable r = new Runnable() {			
+
+	public static void asyncSendErrorEmail(final String content) {
+		Runnable r = new Runnable() {
 			@Override
 			public void run() {
 				try {
-					sendEmail(receiveMailAccount, "LMoon's heroku app","乱月同学", "神之catch信", content);
+					sendEmail(receiveMailAccount, sendUserName, "乱月同学", title, content);
 				} catch (Exception e) {
 					e.printStackTrace();
+					System.out.println(ExceptionUtil.getExceptionMessage(e));
 				}
 			}
 		};
 		ThreadPool.submit(r);
 	}
 
-	public static void sendEmail(String receiveMailAccount,String sendUserName, String receiveUserName, String title, String content) throws Exception {
+	public static void sendEmail(String receiveMailAccount, String sendUserName, String receiveUserName, String title,
+			String content) throws Exception {
 		// 1. 创建参数配置, 用于连接邮件服务器的参数配置
-		Properties props = setProperties();
+//		Properties props = setProperties();
+		Properties props = pMail;
 		// 2. 根据配置创建会话对象, 用于和邮件服务器交互
 		Session session = Session.getDefaultInstance(props);
 		session.setDebug(true); // 设置为debug模式, 可以查看详细的发送 log
 
 		// 3. 创建一封邮件
-		MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount, sendUserName, receiveUserName, title, content);
+		MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount, sendUserName,
+				receiveUserName, title, content);
 
 		// 4. 根据 Session 获取邮件传输对象
 		Transport transport = session.getTransport();
