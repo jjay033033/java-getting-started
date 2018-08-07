@@ -71,7 +71,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			SpringApplication.run(Main.class, args);
-			ShadowsUpdate.start();
+//			ShadowsUpdate.start();
 		} catch (Exception e) {
 			e.printStackTrace();			
 			MailUtil.asyncSendErrorEmail(e);

@@ -41,7 +41,7 @@ public class ShadowsUpdate {
 
 	private static List<Map<String, Object>> ssList = null;
 
-	private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+//	private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
 
 	private static long lastTime = 0;
 
@@ -49,26 +49,27 @@ public class ShadowsUpdate {
 
 	private static final long LIMIT_TIME_MILLIS = 2L * DELAY_TIME_SECONDS * 1000;
 
-	public static void start() {
-		Runnable r = new Runnable() {
-
-			@Override
-			public void run() {
-				lastTime = System.currentTimeMillis();
-				ssList = getssFromServer();				
-			}
-		};
-
-		executorService.scheduleAtFixedRate(r, 0, DELAY_TIME_SECONDS, TimeUnit.SECONDS);
-	}
+//	public static void start() {
+//		Runnable r = new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				lastTime = System.currentTimeMillis();
+//				ssList = getssFromServer();				
+//			}
+//		};
+//
+//		executorService.scheduleAtFixedRate(r, 0, DELAY_TIME_SECONDS, TimeUnit.SECONDS);
+//	}
 
 	public static List<Map<String, Object>> getss() {
-		if (ssList == null) {
-			ssList = getssFromServer();
-		} else if (System.currentTimeMillis() - lastTime > LIMIT_TIME_MILLIS) {
-			start();
-			MailUtil.asyncSendErrorEmail("获取ss线程挂了。。。已重新启动。。。");
-		}
+//		if (ssList == null) {
+//			ssList = getssFromServer();
+//		} else if (System.currentTimeMillis() - lastTime > LIMIT_TIME_MILLIS) {
+//			start();
+//			MailUtil.asyncSendErrorEmail("获取ss线程挂了。。。已重新启动。。。");
+//		}
+		ssList = getssFromServer();
 		return ssList;
 	}
 
