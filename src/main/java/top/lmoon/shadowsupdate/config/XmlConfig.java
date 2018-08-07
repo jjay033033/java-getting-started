@@ -11,6 +11,7 @@ import top.lmoon.heroku.dao.ConfsDAO;
 import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.util.XmlUtil;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
+import top.lmoon.spring.util.SpringContextUtil;
 import top.lmoon.util.ExceptionUtil;
 
 public class XmlConfig {
@@ -33,7 +34,7 @@ public class XmlConfig {
 	
 	private static final String GET_FROM = "getFrom";
 	
-	private static ConfsDAO confsDAO = new ConfsDAO();
+	private static ConfsDAO confsDAO = (ConfsDAO) SpringContextUtil.getBean("confsDAO");
 
 //	/** 重加载的间隔时间 **/
 //	private static final long RELOAD_TIME = 30L;
