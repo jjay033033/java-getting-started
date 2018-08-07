@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import top.lmoon.shadowsupdate.SysConstants;
 import top.lmoon.shadowsupdate.util.XmlMap;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
+import top.lmoon.util.ExceptionUtil;
 
 
 public class XmlConfig {
@@ -40,6 +41,7 @@ public class XmlConfig {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			logger.error("config.xml初始化失败:", e);
 		}
 		
@@ -97,6 +99,7 @@ public class XmlConfig {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			logger.error("servers初始化失败:", e);
 		}
 	}

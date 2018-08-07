@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import top.lmoon.util.ExceptionUtil;
+
 /**
  * @author LMoon
  * @date 2017年10月18日
@@ -89,6 +91,7 @@ public class WxPubController {
  
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+            System.out.println(ExceptionUtil.getExceptionMessage(e));
         }
         return "";
     }

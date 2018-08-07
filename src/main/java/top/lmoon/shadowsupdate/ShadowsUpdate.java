@@ -24,6 +24,7 @@ import top.lmoon.shadowsupdate.config.ConfigListFactory;
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
 import top.lmoon.shadowsupdate.qrcode.QRcodeUtil;
 import top.lmoon.shadowsupdate.vo.ConfVO;
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * @author LMoon
@@ -109,6 +110,7 @@ public class ShadowsUpdate {
 					list.add(map);
 				} catch (Exception e1) {
 					e1.printStackTrace();
+					System.out.println(ExceptionUtil.getExceptionMessage(e1));
 					logger.error("", e1);
 					MailUtil.asyncSendErrorEmail(e1);
 				}
@@ -125,6 +127,7 @@ public class ShadowsUpdate {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			logger.error("", e);
 			MailUtil.asyncSendErrorEmail(e);
 		}
@@ -147,6 +150,7 @@ public class ShadowsUpdate {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					System.out.println(ExceptionUtil.getExceptionMessage(e));
 					logger.error("", e);
 					MailUtil.asyncSendErrorEmail(e);
 				}
@@ -187,6 +191,7 @@ public class ShadowsUpdate {
 		} catch (Exception e) {
 			logger.error("getConfListFromJson:", e);
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			return null;
 		}
 

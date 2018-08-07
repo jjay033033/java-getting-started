@@ -109,6 +109,7 @@ public class Main {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			MailUtil.asyncSendErrorEmail(e);
 			return e.getMessage();
 		}
@@ -154,6 +155,7 @@ public class Main {
 			return "r1:" + result;
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			MailUtil.asyncSendErrorEmail(e);
 			return e.getMessage();
 		}
@@ -168,6 +170,7 @@ public class Main {
 			return "{result:" + result + "}";
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			MailUtil.asyncSendErrorEmail(e);
 			return e.getMessage();
 		}
@@ -191,6 +194,7 @@ public class Main {
 			return "vipvideo";
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			MailUtil.asyncSendErrorEmail(e);
 			map.put("message", e.getMessage());
 			return "error";
@@ -218,6 +222,7 @@ public class Main {
 			return fromObject.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			MailUtil.asyncSendErrorEmail(e);
 			return "error:" + e.getMessage();
 		}
@@ -260,6 +265,7 @@ public class Main {
 			return JSON.toJSONString(map);
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			MailUtil.asyncSendErrorEmail(e);
 			return "error";
 		}

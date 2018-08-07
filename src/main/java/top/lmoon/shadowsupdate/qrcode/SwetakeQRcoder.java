@@ -16,6 +16,7 @@ import com.swetake.util.Qrcode;
 
 import jp.sourceforge.qrcode.QRCodeDecoder;
 import jp.sourceforge.qrcode.data.QRCodeImage;
+import top.lmoon.util.ExceptionUtil;
 
 public class SwetakeQRcoder implements QRcoder{
 	
@@ -74,6 +75,7 @@ public class SwetakeQRcoder implements QRcoder{
 			ImageIO.write(bufImg, "jpg", fos);
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			logger.error("",e);
 		}finally{
 			if(fos!=null){
@@ -82,6 +84,7 @@ public class SwetakeQRcoder implements QRcoder{
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					System.out.println(ExceptionUtil.getExceptionMessage(e));
 				}
 			}
 		}
@@ -98,6 +101,7 @@ public class SwetakeQRcoder implements QRcoder{
 			return new String(bytes);
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 			logger.error("decode:", e);
 		}
 		return null;

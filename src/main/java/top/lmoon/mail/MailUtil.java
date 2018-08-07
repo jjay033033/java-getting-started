@@ -67,6 +67,7 @@ public class MailUtil {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}
 		// System.load("mail.properties");
 		// System.load("mail_user.properties");
