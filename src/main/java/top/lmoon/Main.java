@@ -69,13 +69,13 @@ public class Main {
 	private VipVideoDAO vipVideoDAO;
 
 	public static void main(String[] args) {
-		try {
+//		try {
 			SpringApplication.run(Main.class, args);
 //			ShadowsUpdate.start();
-		} catch (Exception e) {
-			e.printStackTrace();			
-			MailUtil.asyncSendErrorEmail(e);
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();			
+//			MailUtil.asyncSendErrorEmail(e);
+//		}
 	}
 
 	@RequestMapping("/")
@@ -237,7 +237,7 @@ public class Main {
 	String updateConf(@ModelAttribute(value = "vo") ConfWebVO vo) {
 		try {
 			confsDAO.updateConf(vo);
-			ConfigListFactory.resetInstance();
+			XmlConfig.resetInstance();
 			return "conf";
 		} catch (Exception e) {
 			// map.put("message", e.getMessage());

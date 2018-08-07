@@ -22,7 +22,7 @@ public class XmlConfig {
 	
 	private Map map;
 	
-	private Map<String,ServerConfigVO> serverMap = new LinkedHashMap<String, ServerConfigVO>();
+	private static Map<String, ServerConfigVO> serverMap = new LinkedHashMap<String, ServerConfigVO>();
 	
 	private XmlConfig(){
 		init();
@@ -143,7 +143,7 @@ public class XmlConfig {
 	 * 服务器配置（servers标签下）的map
 	 * @return
 	 */
-	public Map<String, ServerConfigVO> getServerConfigMap(){
+	public static Map<String, ServerConfigVO> getServerConfigMap(){
 		return serverMap;
 	}
 

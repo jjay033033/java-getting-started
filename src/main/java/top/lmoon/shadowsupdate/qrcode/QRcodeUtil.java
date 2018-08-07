@@ -4,13 +4,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import top.lmoon.shadowsupdate.vo.ConfVO;
+import top.lmoon.util.ExceptionUtil;
 
 public class QRcodeUtil {
 	
-	private static final Logger logger = Logger.getLogger(QRcodeUtil.class);
+//	private static final Logger logger = LoggerFactory.getLogger(QRcodeUtil.class);
 	
 	public static void createQRCode(List<ConfVO> list,String path) {
 		List<String> strList = confStr4QRCode(list);
@@ -24,8 +23,8 @@ public class QRcodeUtil {
 						+ list.get(i).getServer() + ".jpg");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-				logger.error("create QRCode:", e);
+				e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
+//				logger.error("create QRCode:", e);
 			}
 		}
 	}

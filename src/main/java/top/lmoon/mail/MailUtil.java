@@ -13,6 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import top.lmoon.util.ExceptionUtil;
+import top.lmoon.util.StringUtil;
 import top.lmoon.util.ThreadPool;
 
 /**
@@ -51,8 +52,17 @@ public class MailUtil {
 			sendUserName = pUser.getProperty("sendUserName");
 			title = pUser.getProperty("title");
 			//私密账号密码，请在系统参数里添加
-			myEmailAccount = System.getenv("myEmailAccount");
-			myEmailPassword = System.getenv("myEmailPassword");
+			myEmailAccount = pUser.getProperty("myEmailAccount");
+			myEmailPassword = pUser.getProperty("myEmailPassword");
+			
+			String myEmailAccountEnv = System.getenv("myEmailAccount");
+			if(!StringUtil.isNullOrBlank(myEmailAccountEnv)){
+				myEmailAccount = myEmailAccountEnv;
+			}
+			String myEmailPasswordEnv = System.getenv("myEmailPassword");
+			if(!StringUtil.isNullOrBlank(myEmailPasswordEnv)){
+				myEmailPassword = myEmailPasswordEnv;
+			}
 			receiveMailAccount = pUser.getProperty("receiveMailAccount");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

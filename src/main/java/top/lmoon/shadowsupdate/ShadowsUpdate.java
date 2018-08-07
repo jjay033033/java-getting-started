@@ -62,6 +62,10 @@ public class ShadowsUpdate {
 //		executorService.scheduleAtFixedRate(r, 0, DELAY_TIME_SECONDS, TimeUnit.SECONDS);
 //	}
 
+	public static void main(String[] args) {
+		System.out.println(getss());
+	}
+	
 	public static List<Map<String, Object>> getss() {
 //		if (ssList == null) {
 //			ssList = getssFromServer();
@@ -130,7 +134,7 @@ public class ShadowsUpdate {
 		List<ConfVO> list = new ArrayList<ConfVO>();
 		ConfigList c;
 
-		Map<String, ConfigList> cMap = ConfigListFactory.getInstance().getConfigListMap();
+		Map<String, ConfigList> cMap = ConfigListFactory.getConfigListMap();
 		for (Iterator<Entry<String, ConfigList>> it = cMap.entrySet().iterator(); it.hasNext();) {
 			c = it.next().getValue();
 			if (c != null) {

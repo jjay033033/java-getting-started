@@ -7,16 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 import top.lmoon.shadowsupdate.qrcode.Base64Coder;
 import top.lmoon.shadowsupdate.qrcode.QRcoder;
-import top.lmoon.shadowsupdate.qrcode.SwetakeQRcoder;
 import top.lmoon.shadowsupdate.qrcode.ZxingQRcoder;
 import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.shadowsupdate.vo.ConfVO;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
-
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * @author guozy
@@ -25,7 +23,7 @@ import top.lmoon.shadowsupdate.vo.ServerConfigVO;
  */
 public class PicConfigListImpl implements ConfigList{
 	
-	private static final Logger logger = Logger.getLogger(PicConfigListImpl.class);
+//	private static final Logger logger = LoggerFactory.getLogger(PicConfigListImpl.class);
 	
 //	private static final String FREE_URL = "https://www.shadowsocks8.biz/";
 //	private static final String beginStr = "<section id=\"free\"";
@@ -43,12 +41,12 @@ public class PicConfigListImpl implements ConfigList{
 	 * @see priv.lmoon.shadowsupdate.config.ConfigList#getConfigList()
 	 */
 	@Override
-	public List<ConfVO> getConfigList() throws Exception {
+	public List<ConfVO> getConfigList() {
 		// TODO Auto-generated method stub
 		return getConf(UrlContent.getURLContent(vo));
 	}
 	
-	private List<ConfVO> getConf(String content) throws Exception {
+	private List<ConfVO> getConf(String content) {
 		List<ConfVO> list = new ArrayList<ConfVO>();
 		if (StringUtils.isBlank(content)) {
 			return list;
@@ -67,14 +65,7 @@ public class PicConfigListImpl implements ConfigList{
 				
 				String serverStr = content.substring(serverIdx, serverEnd);
 				if(serverStr.contains(vo.getSeverPicFlag())){
-					ConfVO vo = null;
-					try {
-						vo = getConfFromStr(Base64Coder.decodeBase64ForSS(qr.decode(getImgUrl(serverStr.trim()))));
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						logger.error("",e);
-					}
+					ConfVO vo = getConfFromStr(Base64Coder.decodeBase64ForSS(qr.decode(getImgUrl(serverStr.trim()))));
 					if(vo!=null){
 						list.add(vo);
 					}
@@ -82,7 +73,8 @@ public class PicConfigListImpl implements ConfigList{
 				content = content.substring(serverEnd);
 			}
 		}catch(Exception e){
-			throw new Exception("content:"+content,e);
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
+//			logger.error("",e);
 		}
 		return list;
 	}
@@ -108,7 +100,9 @@ public class PicConfigListImpl implements ConfigList{
 				}
 			}
 		}catch(Exception e){
-			logger.error("",e);
+//			logger.error("str:"+str,e);
+			System.out.println("str:"+str);
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
 		}
 		return null;
 	}

@@ -7,12 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.apache.log4j.Logger;
+import top.lmoon.util.ExceptionUtil;
 
 public class FileUtil {
-	
-	private static final Logger logger = Logger.getLogger(FileUtil.class);
-	
+
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(FileUtil.class);
+
 	public static String readFile(String pathname) {
 		File file = null;
 		FileInputStream fis = null;
@@ -34,8 +35,9 @@ public class FileUtil {
 				sb.append("\n");
 			}
 		} catch (Exception e) {
-			logger.error("readFile:", e);
+			// logger.error("readFile:", e);
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 		} finally {
 			try {
 				if (br != null) {
@@ -49,6 +51,7 @@ public class FileUtil {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+				System.out.println(ExceptionUtil.getExceptionMessage(e));
 			}
 		}
 		return sb.toString();
@@ -68,8 +71,9 @@ public class FileUtil {
 			fos.write(content.getBytes("utf-8"));
 			fos.flush();
 		} catch (Exception e) {
-			logger.error("writeFile:", e);
+			// logger.error("writeFile:", e);
 			e.printStackTrace();
+			System.out.println(ExceptionUtil.getExceptionMessage(e));
 		} finally {
 			try {
 				if (fos != null) {
@@ -77,23 +81,24 @@ public class FileUtil {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+				System.out.println(ExceptionUtil.getExceptionMessage(e));
 			}
 		}
 	}
-	
-	public static void writeFileReplaceWord(String pathname,String oldWord,String newWord) {
+
+	public static void writeFileReplaceWord(String pathname, String oldWord, String newWord) {
 		String oldContent = readFile(pathname);
 		String newContent = oldContent.replace(oldWord, newWord);
 		writeFile(newContent, pathname);
 	}
 
 	public static void main(String[] args) {
-//		StringBuffer a = new StringBuffer("aeb");
-//		a.append("\n");
-//		a.append("ttt");
+		// StringBuffer a = new StringBuffer("aeb");
+		// a.append("\n");
+		// a.append("ttt");
 		String b = readFile("tt.txt");
 		System.out.println(b);
 		writeFile(b, "tt.txt");
 	}
-	
+
 }

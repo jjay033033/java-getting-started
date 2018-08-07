@@ -9,11 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 import top.lmoon.shadowsupdate.util.UrlContent;
 import top.lmoon.shadowsupdate.vo.ConfVO;
 import top.lmoon.shadowsupdate.vo.ServerConfigVO;
+import top.lmoon.util.ExceptionUtil;
 
 /**
  * @author guozy
@@ -22,7 +22,7 @@ import top.lmoon.shadowsupdate.vo.ServerConfigVO;
  */
 public class TextConfigListImpl implements ConfigList {
 
-	private static final Logger logger = Logger.getLogger(TextConfigListImpl.class);
+//	private static final Logger logger = LoggerFactory.getLogger(TextConfigListImpl.class);
 
 	// private static final String FREE_URL = "https://www.ishadowsocks.xyz";
 	// private static final String beginStr = "<section id=\"free\">";
@@ -42,12 +42,12 @@ public class TextConfigListImpl implements ConfigList {
 	 * @see priv.lmoon.shadowsupdate.config.ConfigList#getConfigList()
 	 */
 	@Override
-	public List<ConfVO> getConfigList() throws Exception {
+	public List<ConfVO> getConfigList() {
 		// TODO Auto-generated method stub
 		return getConf(UrlContent.getURLContent(vo));
 	}
 
-	private List<ConfVO> getConf(String content) throws Exception {
+	private List<ConfVO> getConf(String content) {
 		// System.out.println(content);
 		List<ConfVO> list = new ArrayList<ConfVO>();
 		if (StringUtils.isBlank(content)) {
@@ -106,7 +106,10 @@ public class TextConfigListImpl implements ConfigList {
 				content = content.substring(encryptionEndIdx);
 			}
 		} catch (Exception e) {
-			throw new Exception("content:" + content, e);
+			e.printStackTrace();System.out.println(ExceptionUtil.getExceptionMessage(e));
+			System.out.println(content);
+//			logger.error("",e);
+//			logger.error(content);
 		}
 
 		return list;
