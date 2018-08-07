@@ -71,6 +71,7 @@ public class Main {
 	public static void main(String[] args) {
 //		try {
 			SpringApplication.run(Main.class, args);
+			XmlConfig.init();
 			System.out.println("aaaaabbbbbbb11111111");
 //			ShadowsUpdate.start();
 //		} catch (Exception e) {
