@@ -36,6 +36,7 @@ public class XmlConfig {
 				throw new FileNotFoundException();
 			}
 			initServerMap();
+			ConfigListFactory.init();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -110,6 +110,7 @@ public class ShadowsUpdate {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 					logger.error("", e1);
+					MailUtil.asyncSendErrorEmail(e1);
 				}
 				// }
 			}
@@ -125,7 +126,7 @@ public class ShadowsUpdate {
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("", e);
-
+			MailUtil.asyncSendErrorEmail(e);
 		}
 		return list;
 	}
